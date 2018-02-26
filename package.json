@@ -1,0 +1,39 @@
+{
+  "name": "rapo-browserify-budo",
+  "version": "1.0.0",
+  "description": "A barebones Browserify project to get started with Rapid (ra) Prototyping (po) our Web projects",
+  "main": "entry.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "budo index.js --live --open",
+    "build": "node ./scripts/build",
+    "testbuild": "budo -d ./build --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peterbarraud/rapo-browserify-budo.git"
+  },
+  "keywords": [
+    "browserify",
+    "budo",
+    "prototyping"
+  ],
+  "author": "@gapeterb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peterbarraud/rapo-browserify-budo/issues"
+  },
+  "homepage": "https://github.com/peterbarraud/rapo-browserify-budo#browserify-with-budo",
+  "devDependencies": {
+    "budo": "^10.0.4",
+    "file-copy": "^1.0.0",
+    "imagemin": "^5.3.1",
+    "imagemin-gifsicle": "^5.2.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-pngquant": "^5.0.1",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "uglifycss": "0.0.27",
+    "uglifyify": "^4.0.4"
+  }
+}

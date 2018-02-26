@@ -1,0 +1,65 @@
+=========================== Initialize git in your project: ===========================================
+git init
+git add .
+git commit -m "First commit" 
+
+======================== Checkout(Create) Local Branch and Setup Remote Repo to Track It: =============
+git checkout -b <branch>
+git push -u origin <branch>
+
+====================Add existing remote branch to a local repo and track branch: ======================
+git fetch 
+git branch --track branch-name origin/branch-name 
+
+=========  Add a new Remote Repo for your branch : ====================================================
+git remote add [name_of_your_remote]  
+
+==================== Push changes from your local commit into your remote branch: ===================== 
+==================== e.g. git push origin master ======================================================
+git push [name_of_your_new_remote] [name_of_your_branch] 
+
+==================== Git Clone ========================================================================
+git clone [repo url] <optional> new repo name
+
+======================== Delete a branch on your local filesystem: ====================================  
+git branch -d [name_of_your_branch]  
+
+======================== Delete the branch on github: =================================================  
+git push origin :[name_of_your_github_branch] 
+git remote prune origin  // This solves problem of old branches showing up in git branch -r
+
+====================== Download a remote branch to local computer: ==================================== 
+git checkout -t origin/branch-name  
+
+====================== Merging Branches with Git ======================================================
+===================== First make sure both branches are up-to-date w/$ git status, then: ==============
+// Switch to branch 'master' 
+git checkout master 
+// merge master with your development branch 
+git merge yourDevBranchName
+// Push merged local master branch to remote master branch 
+git push -u origin master 
+// delete development branch, not needed. 
+git branch -d yourDevBranchName
+//Finally, Delete the branch on github 
+git push origin :[yourRemoteDevBranchName] 
+git remote prune origin  // This solves problem of old branches showing up in git branch -r  
+
+ ==================== Remove Remote Repo =================================================================
+git remote -v
+# View current remotes
+# destination  https://github.com/FORKER/REPOSITORY.git (fetch)
+# destination  https://github.com/FORKER/REPOSITORY.git (push)
+
+# Remove remote
+git remote rm destination
+
+# Verify it's gone
+git remote -v
+
+=============================================================================================================
+========================= NPM Commands ======================================================================
+=============================================================================================================
+
+ ======== List of Globally Installed Packages ==================================
+ npm list -g --depth 0
