@@ -69,11 +69,13 @@ npm install -g npx
 then can install postcss plugins locally 
 
 npm install autoprefixer --save-dev
+
 npm install css-declaration-sorter --save-dev
 
 And then issue commands
 
 npx postcss src\css\main.css -u css-declaration-sorter --replace --no-map
+
 npx postcss src\css\main.css -u autoprefixer --replace 
 
 Can also do postcss --h to see more options
