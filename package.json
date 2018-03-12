@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "budo index.js --live --open",
     "build": "node ./scripts/build",
+    "css-clean": "npx postcss src\\css\\main.css -u autoprefixer --replace && npx postcss src\\css\\main.css -u css-declaration-sorter --replace --no-map"
     "testbuild": "budo -d ./build --open"
   },
   "repository": {
