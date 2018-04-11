@@ -2,6 +2,7 @@
 git init
 git add .
 git commit -m "First commit" 
+Note- Remember to add node_modules/ directory to .gitignore file befor the commit 
 
 ======================== Checkout(Create) Local Branch and Setup Remote Repo to Track It: =============
 git checkout -b <branch>
