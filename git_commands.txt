@@ -32,6 +32,12 @@ git remote prune origin  // This solves problem of old branches showing up in gi
 ====================== Download a remote branch to local computer: ==================================== 
 git checkout -t origin/branch-name  
 
+====================== Merge Last X Commits into One ==================================================
+// If you want to write the new commit message from scratch, this suffices:
+
+git reset --soft HEAD~3 /* This merges last 3 commits */
+git commit -m "Consolidated Last Three Commits with Previous Command"
+
 ====================== Merging Branches with Git ======================================================
 ===================== First make sure both branches are up-to-date w/$ git status, then: ==============
 // Switch to branch 'master' 
