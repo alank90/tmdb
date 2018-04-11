@@ -60,23 +60,21 @@ This runs `budo` on the build
 
 ### Using postcss-cli for css-declaration-sorter and autoprefixer
 
-Install postcss-cli globally:
-npm install -g postcss-cli
+## Install postcss-cli globally: ##
+`npm install -g postcss-cli`
 
 And npx:
-npm install -g npx
+`npm install -g npx`
 
-then can install postcss plugins locally 
+then install postcss plugins locally 
 
-npm install autoprefixer --save-dev
+`npm install autoprefixer --save-dev`
+`npm install css-declaration-sorter --save-dev`
 
-npm install css-declaration-sorter --save-dev
+## And then issue commands ##
+`npx postcss src\css\main.css -u css-declaration-sorter --replace --no-map`
 
-And then issue commands
-
-npx postcss src\css\main.css -u css-declaration-sorter --replace --no-map
-
-npx postcss src\css\main.css -u autoprefixer --replace 
+`npx postcss src\css\main.css -u autoprefixer --replace`
 
 Can also do postcss --h to see more options
 
