@@ -57,6 +57,19 @@ git remote rm destination
 # Verify it's gone
 git remote -v
 
+==================== Remove a Folder from Git Tracking ======================================================
+Step 1. Add the folder path to your repo's root .gitignore file.
+path_to_your_folder/  (ie., node_modules/)
+
+Step 2. Remove the folder from your local git tracking, but keep it on your disk.
+git rm -r --cached path_to_your_folder/
+
+Step 3. Commit the change
+git commit -m "Removed Directory from Git Tracking"
+
+Step 4. Push your changes to your git repo.
+git push 
+
 =============================================================================================================
 ========================= NPM Commands ======================================================================
 =============================================================================================================
