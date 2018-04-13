@@ -32,6 +32,14 @@ git remote prune origin  // This solves problem of old branches showing up in gi
 ====================== Download a remote branch to local computer: ==================================== 
 git checkout -t origin/branch-name  
 
+====================== Change a Remote Repo on a Local Project ========================================
+
+
+Change your remote Repo with the git remote set-url command.
+
+git remote set-url origin https://github.com/USERNAME/REPOSITORY.git
+
+
 ====================== Merge Last X Commits into One ==================================================
 // If you want to write the new commit message from scratch, this suffices:
 
