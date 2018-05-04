@@ -29,7 +29,7 @@ require("rimraf")("./dist", function () {
             if (err) {
               reject("No index.js found. Skipped browserfying step");
             } else {
-              console.log("bundle.js: build and uglify");
+              console.log("dist/index.js: build and uglify");
               let b = require("browserify")();
               b.add("index.js");
               b.transform("uglifyify", { global: true });
