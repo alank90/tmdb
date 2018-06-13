@@ -2,13 +2,13 @@
   "name": "rapo-browserify-budo",
   "version": "1.0.0",
   "description": "A barebones Browserify project to get started with Rapid (ra) Prototyping (po) our Web projects",
-  "main": "entry.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "budo index.js --live --open",
     "build": "node ./scripts/build",
-    "css-clean": "npx postcss src\\css\\main.css -u autoprefixer --replace && npx postcss src\\css\\main.css -u css-declaration-sorter --replace --no-map",
-    "testbuild": "budo -d ./build --open"
+    "testbuild": "budo -d ./build --open",
+    "css-clean": "npx postcss src\\css\\main.css -u autoprefixer --replace && npx postcss src\\css\\main.css -u css-declaration-sorter --replace --no-map"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,10 @@
   },
   "homepage": "https://github.com/peterbarraud/rapo-browserify-budo#browserify-with-budo",
   "devDependencies": {
+    "autoprefixer": "^8.1.0",
     "budo": "^10.0.4",
+    "copy-dir": "^0.3.0",
+    "css-declaration-sorter": "^3.0.1",
     "file-copy": "^1.0.0",
     "imagemin": "^5.3.1",
     "imagemin-gifsicle": "^5.2.0",
