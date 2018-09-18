@@ -57,7 +57,7 @@ git push -u origin master
 // delete development branch, not needed. 
 git branch -d yourDevBranchName
 //Finally, Delete the branch on github 
-git push origin :[yourRemoteDevBranchName] 
+git push origin :yourRemoteDevBranchName
 git remote prune origin  // This solves problem of old branches showing up in git branch -r  
 
  ==================== Remove Remote Repo =================================================================
