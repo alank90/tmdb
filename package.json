@@ -8,7 +8,7 @@
     "start": "budo index.js --live --open",
     "build": "node ./scripts/build",
     "testbuild": "budo -d ./build --open",
-    "css-clean": "npx postcss src\\css\\main.css -u autoprefixer --replace && npx postcss src\\css\\main.css -u css-declaration-sorter --replace --no-map"
+    "css-clean": "npx postcss src\\css\\main.css --replace && npx postcss src\\css\\main.css --replace --no-map"
   },
   "repository": {
     "type": "git",
