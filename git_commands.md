@@ -5,12 +5,17 @@
 
 **$ git commit -m "First commit"** 
 
+### ======= Create Remote Repository on Github, then issue commands to track new remote:
+**git remote add origin https://github.com/alank90/my_new_repo.git**
+
+**git push -u origin master**
+
 *Note- Remember to add node_modules/ directory to .gitignore file befor the commit* 
 
-## === Checkout(Create) Local Branch and Setup Remote Repo to Track It: ===
-**$ git checkout -b <branch>**
+### Checkout(Create) A New Local Branch Off the Master and Setup Remote Repo Branch to Track It: 
+**$ git checkout -b <\new_local_branch>**
 
-**$ git push -u origin <branch>**
+**$ git push -u origin <\new_repo_branch>**
 
 ## ===== Add existing remote branch to a local repo and track branch: =====
 **$ git fetch** 
