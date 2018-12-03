@@ -30,7 +30,7 @@
 **$ git push [name_of_your_new_remote] [name_of_your_branch]** 
 
 ## ============= Git Clone ===========
-**$ git clone [repo url] \\<optional> new repo name**
+**$ git clone [repo url] <optional new repo name>**
 
 ## ============ Delete a branch on your local filesystem: ============  
 **$ git branch -d [name_of_your_branch]**  
