@@ -76,7 +76,7 @@
 **$ git commit -m "Consolidated Last Three Commits with Previous Command"**
 
 ## ========= Merging Branches with Git =================
-## ========= First make sure both branches are up-to-date w/$ git status, then:
+### First make sure both branches are up-to-date w/$ git status, then:
 ### Switch to branch 'master' 
 **$ git checkout master** 
 ### merge master with your development branch: 
@@ -94,7 +94,7 @@
 
 **$ git remote prune origin**  *This solves problem of old branches showing up in git branch -r*  
 
-##  ==================== Remove Remote Repo =======
+##  ========= Remove Remote Repo =======
 **$ git remote -v**
 ### View current remotes
 ### destination  https://github.com/FORKER/REPOSITORY.git (fetch)
