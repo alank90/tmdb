@@ -35,6 +35,24 @@
 ## ============ Delete a branch on your local filesystem: ============  
 **$ git branch -d [name_of_your_branch]**  
 
+## ============ Delete Remote Repo ==============================
+
+### View current remotes
+
+**$ git remote -v**
+
+*origin  https://github.com/OWNER/REPOSITORY.git (fetch)*
+
+*origin  https://github.com/OWNER/REPOSITORY.git (push)*
+
+*destination  https://github.com/FORKER/REPOSITORY.git (fetch)*
+
+*destination  https://github.com/FORKER/REPOSITORY.git (push)*
+
+### Remove remote *destination* repo
+**$ git remote rm *destination***
+
+
 ## ============ Delete the branch on github: =============  
 **$ git push origin :<name_of_your_github_branch>** 
 
