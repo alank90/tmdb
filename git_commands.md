@@ -26,10 +26,10 @@
 **$ git remote add [name_of_your_remote]**  
 
 ## ==== Push changes from your local commit into your remote branch: ==== 
-### ======== e.g. git push origin master ==================================
+### ======== e.g. git push origin master =========================
 **$ git push [name_of_your_new_remote] [name_of_your_branch]** 
 
-## ==================== Git Clone ===========================
+## ============= Git Clone ===========
 **$ git clone [repo url] <optional> new repo name**
 
 ## ============ Delete a branch on your local filesystem: ============  
