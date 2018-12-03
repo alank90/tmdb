@@ -35,7 +35,7 @@
 ## ============ Delete a branch on your local filesystem: ============  
 **$ git branch -d [name_of_your_branch]**  
 
-## ============ Delete Remote Repo ==============================
+## ============ Delete Remote Repo =========
 
 ### View current remotes
 
