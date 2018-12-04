@@ -130,13 +130,13 @@
 **$ git tag**
 
 ### Annotated Tags:
-**$ git tag -a** *v1.4* **-m** "my version 1.4"*
+**$ git tag -a** *[v1.4]* **-m** "my version 1.4"*
 
 ### Lightweight Tags: 
-**$ git tag** *v1.4-lw*
+**$ git tag** *[v1.4-lw]*
 
 ### Pushing Tags (Not done automatically to remote server)
-**$ git push** *[origin]* *[v1.5]*
+**$ git push** *[origin]* *[v1.4]*
 
 ## ================ Revert Last Commit ============================
 ### See https://www.atlassian.com/git/tutorials/undoing-changes for more examples
