@@ -56,16 +56,16 @@
 ## ============ Delete the branch on github: =============  
 **$ git push origin :** *[name_of_your_github_branch]* 
 
-**$ git remote prune** *origin*  *// This solves problem of old branches showing up in git branch -r command*
+**$ git remote prune** *[origin]*  *// This solves problem of old branches showing up in git branch -r command*
 
 ## ======== Download a remote branch to local computer: ========== 
-**$ git checkout -t** *[origin/branch-name]*  
+**$ git checkout -t** *[origin]* *[branch-name]*  
 
 ## ======= Change a Remote Repo on a Local Project ==============
 
 ###Change your remote Repo with the **git remote set-url** command.
 
-**$ git remote set-url origin** *[https://github.com/USERNAME/REPOSITORY.git]*
+**$ git remote set-url** *[origin]* *[https://github.com/USERNAME/REPOSITORY.git]*
 
 
 ## ======= Merge Last X Commits into One ======================
@@ -115,7 +115,7 @@
 
 *Step 2. Remove the folder from your local git tracking, but keep it on your disk.*
 
-**$ git rm -r --cached** *path_to_your_folder/*
+**$ git rm -r --cached** *[path_to_your_folder/]*
 
 *Step 3. Commit the change*
 
@@ -130,13 +130,13 @@
 **$ git tag**
 
 ### Annotated Tags:
-**$ git tag -a v1.4 -m "my version 1.4"**
+**$ git tag -a** *v1.4* **-m** "my version 1.4"*
 
 ### Lightweight Tags: 
-**$ git tag v1.4-lw**
+**$ git tag** *v1.4-lw*
 
 ### Pushing Tags (Not done automatically to remote server)
-**$ git push origin v1.5**
+**$ git push** *[origin]* *[v1.5]*
 
 ## ================ Revert Last Commit ============================
 ### See https://www.atlassian.com/git/tutorials/undoing-changes for more examples
