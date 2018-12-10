@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch index.html",
+            "name": "Debug TMDB app",
             "type": "firefox",
             "request": "launch",
-            "reAttach": true,
-            "file": "${workspaceFolder}/index.html"
+            "url": "http://localhost:9966",
+            "webRoot": "${workspaceFolder}\\index.js"
         }
     ]
 }
