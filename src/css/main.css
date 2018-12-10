@@ -1,40 +1,535 @@
+/*! HTML5 Boilerplate v5.0 | MIT License | http://h5bp.com/ */
+
 html {
-    height: 100%;
+  color: #222;
+  font-size: 62.5%;
+  line-height: 1.4;
+  background: url("../img/film-strip.jpeg") no-repeat center center fixed;
+  background-size: cover;
 }
 
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* ======= Sticky Footer ============= */
+html,
 body {
-    background-color: rgba(176, 227, 243, 0.555);
-    cursor: default;
-    font-size: 62.5%;
+  height: 100%;
+  margin: 0;
 }
 
-h1, h2{
-    text-align: center;
+.page-wrap {
+  min-height: 100%;
+  /*   equal to footer height */
+  margin-bottom: 10vh;
+}
+.page-wrap:after {
+  content: "";
+  display: block;
+}
+.site-footer,
+.page-wrap:after {
+  /* .push must be the same height as footer */
+  height: 10vh;
+}
+.site-footer {
+  background: #e4cba9;
 }
 
-.container {
-    text-align: center;
-    font-size: 24px;
+/* ====== End Sticky Footer ===*/
+
+h1 {
+  display: inline;
+  font-size: 4vw;
+  color: #050709;
+  font-family: "Playfair Display SC", serif;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 3px 3px 2px rgba(13, 13, 13, 0.6);
 }
 
-img {
-    width: 100%;
-    height: auto;
-    max-width: 300px;
-}   
+img[src="./src/img/movie-icon2.png"] {
+  display: inline-block;
+  width: 12vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  margin-top: 3vh;
+  -webkit-animation: rotate 3s 2s;
+  animation: rotate 3s 2s;
+  -webkit-animation-iteration-count: 3;
+  animation-iteration-count: 3;
+}
+
+h2 {
+  font-family: "Playfair Display SC", serif;
+  color: #050709;
+  font-weight: 500;
+  font-size: 3vw;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 75vw;
+  margin-bottom: 20vh;
+  text-shadow: 2px 3px 2px rgba(13, 13, 13, 0.6);
+}
+
+#container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+p,
+span {
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5vh;
+}
 
 p {
-    font-size: 22px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align: left; 
+  font-family: "Buda", cursive;
+  color: #1d1c19;
+  font-weight: 500;
+  font-size: 3.5rem;
+  text-align: center;
+  text-shadow: 2px 3px 2px rgba(13, 13, 13, 0.6);
+  margin-top: 2rem;
 }
 
-.more-link {
-    display: inline-block;
-    margin-left: 10px;
+.floatright {
+  display: block;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 5px;
 }
 
-.less-link {
-    display: inline-block;
-    margin-left: 10px;
+.title {
+  font-family: "Buda", cursive;
+  color: #1d1c19;
+  font-weight: 700;
+  font-size: 3.5rem;
+  text-align: center;
+  text-shadow: 2px 3px 2px rgba(13, 13, 13, 0.6);
+  margin-bottom: 3vh;
+}
+
+.tagline {
+  font-family: "Buda", cursive;
+  color: #1d1c19;
+  font-weight: 600;
+  font-size: 2.5rem;
+  text-align: center;
+  text-shadow: 2px 3px 2px rgba(13, 13, 13, 0.6);
+  margin-bottom: 3vh;
+}
+
+a {
+  color: darkslategrey;
+  font-size: 3rem;
+}
+
+.year,
+.runtime,
+.plot,
+.revenue,
+.release_date {
+  font-size: 2.2vw;
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  max-width: 75%;
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+/*.year, .runtime, .plot, .revenue  {
+    font-size: 2vw;
+    max-width: 65%;
+    align-self: center;
+}*/
+
+#poster {
+  max-width: 30vw;
+  float: right;
+  margin: 15vh 3vw;
+}
+img[src="N/A"] {
+  border: 2px solid black;
+}
+
+.error_message {
+  font-size: 3vw;
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  max-width: 55%;
+  margin: 0 auto;
+}
+
+.tmdbLogo {
+  max-width: 7%;
+}
+.tmdbNotice {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/*CSS for the Form Box*/
+
+fieldset {
+  margin: 20px;
+  border: 0 none;
+}
+
+legend {
+  font-family: "Playfair Display SC", serif;
+  font-size: 2.5vw;
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  text-align: center;
+  margin: 0 auto;
+  margin-left: 25vw;
+}
+
+hr {
+  width: 75vw;
+  margin: 0 auto;
+  background-color: #050709;
+  color: #050709;
+  height: 3px;
+}
+
+input,
+textarea,
+select {
+  font-size: 1.8vw;
+  max-width: 35vw;
+  margin-top: 0.8rem;
+  padding: 2px 5px;
+  border: 0 none;
+  border-radius: 12px;
+  color: rgba(000, 000, 000, 0.4);
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
+  order: 2;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  -webkit-transition: all 0.7s;
+  -o-transition: all 0.7s;
+  transition: all 0.7s;
+}
+input:hover,
+textarea:hover,
+select:hover {
+  border: 2px solid #292929;
+  -webkit-box-shadow: inset 0 0 7px #292929;
+  box-shadow: inset 0 0 7px #292929;
+  background-color: GhostWhite;
+}
+
+/* flexbox styles */
+fieldset div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 25vw;
+  width: auto;
+  /*  justify-content: center;*/
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+label {
+  font-family: "Playfair Display SC", serif;
+  font-size: 1.8vw;
+  width: 25vw;
+  text-align: left;
+  padding: 2px 0;
+  white-space: nowrap;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  margin-top: 0.9rem;
+  margin-right: 0.7rem;
+}
+
+/* label state styles */
+input:focus ~ label,
+textarea:focus ~ label,
+select:focus ~ label {
+  color: #030303;
+}
+
+button {
+  font-family: "Playfair Display SC", serif;
+  font-size: 1.4vw;
+  font-weight: 700;
+  border-radius: 50%;
+  padding: 2rem;
+  margin-left: 48vw;
+  margin-top: 5vh;
+  -webkit-transition: font-size 0.8s;
+  -o-transition: font-size 0.8s;
+  transition: font-size 0.8s;
+}
+button:hover {
+  font-size: 2.3vw;
+}
+
+#year {
+  max-width: 20vw;
+}
+
+#radioButton {
+  display: inline-block;
+  font-family: "Playfair Display SC", serif;
+  font-size: 1.6vw;
+  padding: 2px;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.4);
+  color: black;
+  text-shadow: 2px 3px 2px rgba(255, 255, 255, 0.6);
+  margin-left: 25vw;
+  margin-top: 2rem;
+}
+.radioLabel {
+  display: inline-block;
+  font-family: "Playfair Display SC", serif;
+  font-size: 1.5vw;
+  margin-left: 2rem;
+  margin-right: 0.7rem;
+  width: auto;
+}
+
+/*End of CSS for Form Box*/
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (max-width: 600px) {
+  #poster {
+    float: none;
+    margin: 0 auto;
+  }
+  img[alt="No Poster Available"] {
+    max-height: 40vh;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #radioButton {
+    margin-left: 7vw;
+  }
+}
+
+@media print,
+  (-o-min-device-pixel-ratio: 5/4),
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 120dpi) {
+}
+
+/* ==========================================================================
+   Key Frames
+   ========================================================================== */
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+  clip: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  position: static;
+  width: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+.movie_url {
+  font-size: 2.2vw;
 }

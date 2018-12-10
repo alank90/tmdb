@@ -1,47 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!-- [if gt IE 8]><! -->
+<html class="no-js" lang="">
+  <!-- <![endif] -->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>TMDB</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Rapid Prototyping with Budo & Browserify</title>
-
-    <!-- ============== CSS Files Here =================================== -->
+    <!-- CSS Style Sheets  & Fonts -->
+    <!--
+      Use the following CSS rules to specify these families:
+      font-family: 'Quattrocento Sans', sans-serif;
+      font-family: 'Playfair Display SC', serif;
+      font-family: 'Buda', cursive;
+    -->
+    <link
+      rel="shortcut icon"
+      href="http://d15dxvojnvxp1x.cloudfront.net/assets/favicon.ico"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Buda:300|Playfair+Display+SC|Quattrocento+Sans"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/normalize.min.css" />
     <link rel="stylesheet" href="./src/css/main.css" />
-</head>
+  </head>
 
-<body>
-    <h1>JavaScript for Web Designers</h1>
+  <body>
+    <!--[if lt IE 8]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="http://browsehappy.com/">upgrade your browser</a> to improve
+        your experience.
+      </p>
+    <![endif]-->
+    <div class="page-wrap">
+      <header>
+        <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
+        <h1>Welcome to Alan's Movie Site</h1>
+        <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
 
-    <div class="container">
-        <img src="./src/img/lorem_ipsum.jpg" alt="image of some ipsum lorem">
+        <h2>Here you can lookup facts about your favorite movies</h2>
+      </header>
+      <main>
+        <form>
+          <fieldset>
+            <legend>Search Movie Database</legend>
+            <hr />
+            <div>
+              <label for="t">Movie Title:</label>
+              <input
+                id="name"
+                name="query"
+                type="text"
+                placeholder="Search"
+                required
+              />
+              <!-- name is 'query' to match api for the title in a query. -->
+            </div>
+            <div>
+              <label for="y">Year:</label>
+              <input
+                id="year"
+                name="year"
+                type="number"
+                min="1910"
+                max="2019"
+                placeholder="Year"
+              />
+            </div>
 
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident qui eaque vitae, accusantium exercitationem doloremque
-            dolorem molestias, velit aliquid maiores fugit adipisci. Officia eligendi quos odit doloribus voluptates omnis
-            quas quisquam ullam, placeat laborum? Accusamus, deserunt fugiat nostrum odit ipsa, delectus voluptatem, tempore
-            debitis nemo mollitia hic. Architecto aliquam temporibus itaque distinctio sunt nihil dolores iusto, magnam suscipit
-            ad animi!</p>
-        <p>Fuga ex odio atque quo tenetur, sed dicta doloremque fugit earum eveniet, id maiores repellendus vel ab qui aut,
-            perspiciatis eius esse cupiditate deleniti. Ipsa saepe fugit cupiditate, accusamus distinctio, deserunt officia
-            natus cumque officiis quisquam iusto ab quos. Quam veritatis architecto quidem temporibus voluptates nesciunt
-            illo accusamus? Cum quos beatae nisi quia, nihil tempora doloribus consequuntur! Modi, aut temporibus.</p>
-        <p>Eligendi, beatae, fuga officiis accusantium iure repellendus numquam culpa cumque itaque eius quaerat? Sint natus
-            maxime consectetur quos earum enim rem, voluptatibus atque error cumque unde recusandae, deleniti neque! Commodi
-            tempora expedita atque quis, repudiandae, corporis rerum illo rem modi sit enim obcaecati. Laboriosam temporibus,
-            expedita recusandae a, maxime officiis illo distinctio ipsum rem, consequuntur earum alias sed sequi enim.</p>
-        <p>Est ad voluptas mollitia placeat provident adipisci hic, neque a tempore! Maiores eius amet consectetur, harum mollitia,
-            similique voluptates animi earum quidem aperiam voluptas quo omnis voluptatum magnam explicabo alias. Dicta aliquid
-            nemo est ab a sed voluptas nobis recusandae veniam! Ad reiciendis repellendus, optio ab voluptas ullam hic inventore
-            sint laboriosam temporibus sed voluptatem, repellat dolorum fuga iste accusamus!</p>
+            <span id="radioButton">Query Type(Movie or Series):</span>
+            <span class="radioLabel">Movie</span
+            ><input
+              type="radio"
+              name="type"
+              value="movie"
+              checked="checked"
+              id="r1"
+            />
+            <span class="radioLabel">Series</span
+            ><input type="radio" name="type" value="series" id="r2" />
+
+            <button>Send Request</button>
+          </fieldset>
+        </form>
+
+        <!-- ==== Here go Results from TMDB query ===== -->
+        <p id="poster"></p>
+        <!-- Poster floated right. Cant be in the flex box container. -->
+        <div id="container">
+          <h3 class="title"></h3>
+
+          <br />
+          <p class="plot"></p>
+          <p class="release_date"></p>
+          <p class="revenue"></p>
+          <p class="runtime"></p>
+          <p><a class="movie_url">Movie Home Page</a></p>
+        </div>
+        <p class="error_message"></p>
+        <a href="#"><button id="clear">Clear</button></a>
+      </main>
     </div>
+    <!-- end .page-wrap -->
+    <footer class="site-footer">
+      <p class="tmdbNotice">
+        <img class="tmdbLogo" src="./src/img/tmdb_logo.png" alt="TMDb Logo" /> "This
+        product uses the TMDb API but is not endorsed or certified by TMDb."
+      </p>
+    </footer>
 
-
-    <!-- ===================== JavaScript Files Below This Line =============== -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="index.js"></script>
-</body>
-
+    <!-- ==================================================== -->
+    <!-- =========== Javascript Below This Line ============= -->
+    <!-- ==================================================== -->
+    <!-- jQuery CDN -->
+    <script
+      src="http://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./index.js"></script>
+  </body>
 </html>

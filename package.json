@@ -1,7 +1,7 @@
 {
-  "name": "rapo-browserify-budo",
+  "name": "tmdb-movie-info",
   "version": "1.0.0",
-  "description": "A barebones Browserify project to get started with Rapid (ra) Prototyping (po) our Web projects",
+  "description": "Web App Using TMDB API to retrieve movie",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,7 @@
   "keywords": [
     "browserify",
     "budo",
-    "prototyping"
+    "Movie App"
   ],
   "author": "@gapeterb",
   "license": "ISC",
