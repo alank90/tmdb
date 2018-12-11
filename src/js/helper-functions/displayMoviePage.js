@@ -6,8 +6,7 @@ const tmdbQuery = require("./tmdbQuery");
 displayMoviePage = async function() {
   try {
     let oMovieInfo = await tmdbQuery.movieInfo;
-    console.log(oMovieInfo);
-
+    
     // Now we can begin output of oMovieInfo to the page
     // First Lets check state of the Movie Info .container
     if ($oError.not(".hidden")) {

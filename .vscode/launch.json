@@ -6,10 +6,10 @@
     "configurations": [
         {
             "name": "Debug TMDB app",
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "url": "http://localhost:9966",
-            "webRoot": "${workspaceFolder}\\index.js"
+            "url": "http://localhost:9966/index.html",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
