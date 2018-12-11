@@ -20,6 +20,7 @@ const getMovieInfo = async function() {
 
   // Ajax Query settings for movie id
   let settingsAjax1 = {
+    dataType: "json", 
     async: true,
     crossDomain: true,
     url: sQueryMovieIdUrl,
@@ -40,6 +41,7 @@ const getMovieInfo = async function() {
       "https://api.themoviedb.org/3/movie/" + iTmdbId + "?api_key=" + api_key;
 
     let settingsAjax2 = {
+      dataType: "json",
       async: true,
       crossDomain: true,
       url: sQueryMovieInfoUrl,
