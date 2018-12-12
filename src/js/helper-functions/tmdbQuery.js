@@ -31,7 +31,9 @@ const tmdbQuery = async function() {
       data: "{}"
     };
 
-    // get the movie id first from TMDB database
+    // Get the movie id first from TMDB database
+    // This is because w/movie id, API returns more
+    // info in the return object about the movie.
     let idResponse = await $.ajax(settingsAjax1);
     console.log(idResponse);
 

@@ -1,7 +1,7 @@
 // =========  /src/js/main.js ============================ //
 
 // ========== Module Dependencies ================= //
-const tmdbQuery = require("./helper-functions/tmdbQuery");
+const getMovieInfo = require("./helper-functions/getMovieInfo");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -27,10 +27,11 @@ $(document).ready(function() {
     ); //gif while poster loads.
 
     /* jshint ignore:start */
+    // ==== Call TMDB API and get movie info ============== //
     let displayMoviePage = async function() {
-      let oMovieInfo = await tmdbQuery();
+      let oMovieInfo = await getMovieInfo();
 
-      // Now we can begin output of oMovieInfo to the page
+      // Now we can paint the page w/oMovieInfo object
       // First Lets check state of the Movie Info .container
       if ($oError.not(".hidden")) {
         $oError.addClass("hidden");
