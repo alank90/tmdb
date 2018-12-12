@@ -35,15 +35,14 @@ const tmdbQuery = async function() {
     // This is because w/movie id, API returns more
     // info in the return object about the movie.
     let movieQuery = await $.ajax(settingsAjax1);
-    console.log(movieQuery);
-
+    
     // Check if any results returned
     if (movieQuery.total_results > 0) {
       iTmdbId = movieQuery.results[0].id;
 
       //Query string to retrieve Movie Info
       let sQueryMovieInfoUrl =
-        "https://api.themoviedb.org/3/movie/" + iTmdbId + "?api_key=" + api_key;
+        "https://api.themoviedb.org/3/movie/" + iTmdbId + "?api_key=" + api_key + "&language=en-US&append_to_response=credits";
 
       let settingsAjax2 = {
         dataType: "json",

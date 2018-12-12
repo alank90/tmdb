@@ -22,6 +22,7 @@ $(document).ready(function() {
   // ===================================================================== //
   $oForm.on("submit", function(e) {
     e.preventDefault();
+
     $("#poster").html(
       '<center><img src="./src/img/loading.gif" alt="loading..."></center>'
     ); //gif while poster loads.
@@ -49,6 +50,8 @@ $(document).ready(function() {
       // ========== end retrieve Movie Poster Image ================ //
 
       // Let's fill in the page with oMovieInfo object retrieved from TMDB
+
+      // Movie Overview
       $oContainer
         .find(".title")
         .html("<p class='title'>Movie Title:</p>" + oMovieInfo.title);
@@ -58,6 +61,51 @@ $(document).ready(function() {
       $oContainer
         .find(".plot")
         .html("<p class='plot'>Movie Overview</p>" + oMovieInfo.overview);
+
+      // Cast Listing
+      let castOfCharacters = oMovieInfo.credits.cast;
+      // filter first 8 cast entries
+      castOfCharacters = castOfCharacters.filter((el, index) => {
+        return index <= 7;
+      });
+      console.log(castOfCharacters);
+
+      // Crew listing
+      /*  let crew = oMovieInfo.credits.crew;
+
+      crew = crew.filter(el => {
+        return (
+          (el.department === "Directing" && el.job === "Director") ||
+          (el.department === "Writing" && el.job === "Screenplay")
+        );
+      });
+      console.log(crew); */
+
+      // Then print out
+      castOfCharacters.forEach(el => {
+        $oContainer
+          .find(".cast")
+          .append(
+            "<div class='character'> <span>" +
+              el.character +
+              "</span><span>" +
+              el.name +
+              "</span> </div>"
+          );
+      });
+
+      /* crew.forEach(el => {
+        $oContainer
+          .find(".crew")
+          .append(
+            "<div class='crew'><span>" +
+              el.job +
+              "</span><span>" +
+              el.name +
+              "</span></div>"
+          );
+      });
+ */
       $oContainer
         .find(".release_date")
         .html(
@@ -114,6 +162,9 @@ $(document).ready(function() {
     $oContainer.addClass("hidden");
     $oPoster.addClass("hidden");
     $oClear.addClass("hidden");
+    $(".cast").empty();
+    $(".crew").empty();
+
     resetForm($("form[name=searchForm]")); // by name
   }); // End #clear button event handler
 }); // End document.ready
