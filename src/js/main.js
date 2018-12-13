@@ -37,6 +37,11 @@ $(document).ready(function() {
       if ($oError.not(".hidden")) {
         $oError.addClass("hidden");
       }
+      // Also empty Dom node p.cast and p.crew if present from a previous query
+      if ($(".character") || $(".crew")) {
+        $(".character").remove();
+        $(".crew").remove();
+      }
 
       // ========= Let's retrieve the Movie poster image ============= //
       let sMoviePoster =
@@ -63,26 +68,26 @@ $(document).ready(function() {
         .html("<p class='plot'>Movie Overview</p>" + oMovieInfo.overview);
 
       // Cast Listing
-      let castOfCharacters = oMovieInfo.credits.cast;
+      let aCastOfCharacters = oMovieInfo.credits.cast;
       // filter first 8 cast entries
-      castOfCharacters = castOfCharacters.filter((el, index) => {
+      aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
         return index <= 7;
       });
-      console.log(castOfCharacters);
+      console.log(aCastOfCharacters);
 
       // Crew listing
-      /*  let crew = oMovieInfo.credits.crew;
+      let aCrew = oMovieInfo.credits.crew;
 
-      crew = crew.filter(el => {
+      aCrew = aCrew.filter(el => {
         return (
           (el.department === "Directing" && el.job === "Director") ||
           (el.department === "Writing" && el.job === "Screenplay")
         );
       });
-      console.log(crew); */
+      console.log(aCrew);
 
       // Then print out
-      castOfCharacters.forEach(el => {
+      aCastOfCharacters.forEach(el => {
         $oContainer
           .find(".cast")
           .append(
@@ -94,18 +99,24 @@ $(document).ready(function() {
           );
       });
 
-      /* crew.forEach(el => {
-        $oContainer
-          .find(".crew")
-          .append(
-            "<div class='crew'><span>" +
-              el.job +
-              "</span><span>" +
-              el.name +
-              "</span></div>"
-          );
+      aCrew.forEach(el => {
+        if ($(".crew:last > span:first").text() === el.job) {
+          $oContainer
+            .find(".crew:last > span:last")
+            .append("<span>,</span>" + el.name);
+        } else {
+          $oContainer
+            .find(".production")
+            .append(
+              "<div class='crew'><span>" +
+                el.job +
+                "</span><span>" +
+                el.name +
+                "</span></div>"
+            );
+        }
       });
- */
+
       $oContainer
         .find(".release_date")
         .html(
@@ -162,8 +173,8 @@ $(document).ready(function() {
     $oContainer.addClass("hidden");
     $oPoster.addClass("hidden");
     $oClear.addClass("hidden");
-    $(".cast").empty();
-    $(".crew").empty();
+    $(".character").remove();
+    $(".crew").remove();
 
     resetForm($("form[name=searchForm]")); // by name
   }); // End #clear button event handler
