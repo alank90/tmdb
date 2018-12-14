@@ -81,7 +81,8 @@ $(document).ready(function() {
       aCrew = aCrew.filter(el => {
         return (
           (el.department === "Directing" && el.job === "Director") ||
-          (el.department === "Writing" && el.job === "Screenplay")
+          (el.department === "Writing" && el.job === "Screenplay") ||
+          (el.department === "Writing" && el.job === "Writer")
         );
       });
       console.log(aCrew);
