@@ -7,6 +7,7 @@ $(document).ready(function() {
   // =====  Declare Method Variables ============= //
   var $oForm = $("form");
   var $oContainer = $("#container");
+  var oMovieInfo = {};
   var $oPoster = $("#poster");
   var $oClear = $("#clear");
   var $oError = $(".error_message");
@@ -30,7 +31,7 @@ $(document).ready(function() {
     /* jshint ignore:start */
     // ==== Call TMDB API and get movie info ============== //
     let displayMoviePage = async function() {
-      let oMovieInfo = await getMovieInfo();
+      oMovieInfo = await getMovieInfo();
 
       // Now we can paint the page w/oMovieInfo object
       // First Lets check state of the Movie Info .container
