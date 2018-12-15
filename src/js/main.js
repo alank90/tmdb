@@ -2,6 +2,7 @@
 
 // ========== Module Dependencies ================= //
 const getMovieInfo = require("./helper-functions/getMovieInfo");
+const getActorInfo = require("./helper-functions/getActorinfo");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -89,13 +90,15 @@ $(document).ready(function() {
       console.log(aCrew);
 
       // Then print out
-      aCastOfCharacters.forEach(el => {
+      aCastOfCharacters.forEach((el, index) => {
         $oContainer
           .find(".cast")
           .append(
             "<div class='character'> <span>" +
               el.character +
-              "</span><span>" +
+              "</span><span class='actor' data-character-index=" +
+              index +
+              ">" +
               el.name +
               "</span> </div>"
           );
@@ -164,7 +167,20 @@ $(document).ready(function() {
     // ===================================================================== //
   });
 
-  // Reset Form Function ==================================================
+  // ============ Event Handler for Getting Actor Info ================ //
+  // Had to use event delegation here
+  /* jshint ignore:start */
+
+  $(".cast").on("click", ".actor", async function(e) {
+    let iActorId = oMovieInfo.credits.cast[$(this).data("character-index")].id;
+    let oActorInfo = await getActorInfo(iActorId);
+    console.log(oActorInfo);
+  });
+  /* jshint ignore:end */
+
+  // =========== End Event Handler Actor Info ========================= //
+
+  // ================ Reset Form Function ==== ==================== //
   function resetForm($form) {
     $oForm.find("input").val("");
   }

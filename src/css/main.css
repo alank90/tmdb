@@ -220,6 +220,10 @@ a {
   margin-right: 15px;
 }
 
+.actor {
+  cursor: pointer;
+}
+
 #poster {
   max-width: 30vw;
   float: right;
