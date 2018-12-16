@@ -73,7 +73,7 @@ $(document).ready(function() {
       let aCastOfCharacters = oMovieInfo.credits.cast;
       // filter first 8 cast entries
       aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
-        return index <= 7;
+        return index <= 9;
       });
       console.log(aCastOfCharacters);
 
@@ -94,13 +94,13 @@ $(document).ready(function() {
         $oContainer
           .find(".cast")
           .append(
-            "<div class='character'> <span>" +
+            "<li class='character'> <span>" +
               el.character +
               "</span><span class='actor' data-character-index=" +
               index +
               ">" +
               el.name +
-              "</span> </div>"
+              "</span> </li>"
           );
       });
 
@@ -113,11 +113,11 @@ $(document).ready(function() {
           $oContainer
             .find(".production")
             .append(
-              "<div class='crew'><span>" +
+              "<li class='crew'><span>" +
                 el.job +
                 "</span><span>" +
                 el.name +
-                "</span></div>"
+                "</span></li>"
             );
         }
       });
@@ -170,13 +170,25 @@ $(document).ready(function() {
   // ================================================================== //
   // ============ Event Handler for Getting Actor Info ================ //
   // ================================================================== //
-  
+
   /* jshint ignore:start */
   // Had to use event delegation here
   $(".cast").on("click", ".actor", async function(e) {
     let iActorId = oMovieInfo.credits.cast[$(this).data("character-index")].id;
     let oActorInfo = await getActorInfo(iActorId);
+    console.log(iActorId);
     console.log(oActorInfo);
+
+    $(this)
+      .parent()
+      .append(
+        "<p class='bio'>" +
+          oActorInfo.biography +
+          "<br>" +
+          "Born: " +
+          oActorInfo.place_of_birth +
+          "</p>"
+      );
   });
   /* jshint ignore:end */
 
@@ -196,7 +208,6 @@ $(document).ready(function() {
   // =================== End Reset Form ========================= //
   // ============================================================ //
 
-
   // ================================================================ //
   // =========== Clear button event handler ========================= //
   // ================================================================ //
@@ -209,9 +220,8 @@ $(document).ready(function() {
     $(".crew").remove();
 
     resetForm($("form[name=searchForm]")); // by name
-  });  
+  });
   // ===================================================================== //
   // ============ End #clear button event handler ======================== //
   // ===================================================================== //
-
 }); // ============= End document.ready ========================== //

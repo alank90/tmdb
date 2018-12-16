@@ -146,7 +146,7 @@ span {
   margin-bottom: 1.5vh;
 }
 
-p {
+p, ul {
   font-family: "Buda", cursive;
   color: #1d1c19;
   font-weight: 500;
@@ -220,9 +220,18 @@ a {
   margin-right: 15px;
 }
 
+ul {
+  list-style-type: none;
+}
+
 .actor {
   cursor: pointer;
 }
+  .bio {
+    font-size: 1.2rem;
+    margin: 5px;
+    text-decoration: none;
+  }
 
 #poster {
   max-width: 30vw;
