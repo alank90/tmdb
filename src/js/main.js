@@ -115,7 +115,7 @@ $(document).ready(function() {
             .append(
               "<li class='crew'><span>" +
                 el.job +
-                "</span><span>" +
+                "</span><span class='director-writer'>" +
                 el.name +
                 "</span></li>"
             );
@@ -173,22 +173,35 @@ $(document).ready(function() {
 
   /* jshint ignore:start */
   // Had to use event delegation here
-  $(".cast").on("click", ".actor", async function(e) {
-    let iActorId = oMovieInfo.credits.cast[$(this).data("character-index")].id;
-    let oActorInfo = await getActorInfo(iActorId);
-    console.log(iActorId);
-    console.log(oActorInfo);
+  $(".cast, .production").on("click", ".actor, .director-writer", async function(event) {
+    try {
+      const el = event.target;
+      console.log(el);
 
-    $(this)
-      .parent()
-      .append(
-        "<p class='bio'>" +
-          oActorInfo.biography +
-          "<br>" +
-          "Born: " +
-          oActorInfo.place_of_birth +
-          "</p>"
-      );
+      let iActorId =
+        oMovieInfo.credits.cast[$(this).data("character-index")].id;
+      let oActorInfo = await getActorInfo(iActorId);
+      console.log(oActorInfo);
+
+      let $oBiography = $(el).children(".bio");
+
+      // Check if p.bio is in the DOM or not
+      if ($oBiography.length === 0) {
+        // need to add p.bio to DOM
+        $(el).append(
+          "<p class='bio'>" +
+            oActorInfo.biography +
+            "<br>" +
+            "Born: " +
+            oActorInfo.place_of_birth +
+            "</p>"
+        );
+      } else {
+        $oBiography.toggleClass("hidden");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   });
   /* jshint ignore:end */
 

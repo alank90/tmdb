@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Debug TMDB app",
-            "type": "chrome",
+            "type": "firefox",
             "request": "launch",
             "url": "http://localhost:9966/index.html",
             "webRoot": "${workspaceFolder}"

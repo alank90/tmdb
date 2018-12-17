@@ -227,6 +227,9 @@ ul {
 .actor {
   cursor: pointer;
 }
+.production {
+  cursor: pointer;
+}
   .bio {
     font-size: 1.2rem;
     margin: 5px;
