@@ -2,7 +2,7 @@
 
 // ========== Module Dependencies ================= //
 const getMovieInfo = require("./helper-functions/getMovieInfo");
-const getActorInfo = require("./helper-functions/getActorinfo");
+const getPersonInfo = require("./helper-functions/getPersonInfo");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -104,20 +104,38 @@ $(document).ready(function() {
           );
       });
 
-      aCrew.forEach(el => {
+      aCrew.forEach((el, index) => {
         if ($(".crew:last > span:first").text() === el.job) {
           $oContainer
             .find(".crew:last > span:last")
-            .append("<span>,</span>" + el.name);
+            .append(
+              "<li><span class='director-writer' data-crew-index=" +
+                index +
+                ">" +
+                el.name +
+                "</span></li>"
+            );
+        } else if (aCrew.length - 1 === index) {
+          $oContainer
+            .find(".crew:last > span:last")
+            .append(
+              "<span class='director-writer' data-crew-index=" +
+                index +
+                ">" +
+                el.name +
+                "</span></li>"
+            );
         } else {
           $oContainer
             .find(".production")
             .append(
               "<li class='crew'><span>" +
                 el.job +
-                "</span><span class='director-writer'>" +
+                "</span><span class='director-writer' data-crew-index=" +
+                index +
+                ">" +
                 el.name +
-                "</span></li>"
+                "</span>"
             );
         }
       });
@@ -168,41 +186,53 @@ $(document).ready(function() {
   });
 
   // ================================================================== //
-  // ============ Event Handler for Getting Actor Info ================ //
+  // ============ Event Handler for Getting Person Info ================ //
   // ================================================================== //
 
   /* jshint ignore:start */
   // Had to use event delegation here
-  $(".cast, .production").on("click", ".actor, .director-writer", async function(event) {
-    try {
-      const el = event.target;
-      console.log(el);
+  $(".cast, .production").on(
+    "click",
+    ".actor, .director-writer",
+    async function(event) {
+      try {
+        const el = event.target;
+        console.log(el);
 
-      let iActorId =
-        oMovieInfo.credits.cast[$(this).data("character-index")].id;
-      let oActorInfo = await getActorInfo(iActorId);
-      console.log(oActorInfo);
+        if ($(el).hasClass("actor")) {
+          var iPersonId =
+            oMovieInfo.credits.cast[$(el).data("character-index")].id;
+        } else if ($(el).hasClass("director-writer")) {
+          var iPersonId = oMovieInfo.credits.crew[$(el).data("crew-index")].id;
+        } else {
+          console.log("Error with Personid");
+        }
 
-      let $oBiography = $(el).children(".bio");
+        console.log(`iPersonId is ${iPersonId}`);
 
-      // Check if p.bio is in the DOM or not
-      if ($oBiography.length === 0) {
-        // need to add p.bio to DOM
-        $(el).append(
-          "<p class='bio'>" +
-            oActorInfo.biography +
-            "<br>" +
-            "Born: " +
-            oActorInfo.place_of_birth +
-            "</p>"
-        );
-      } else {
-        $oBiography.toggleClass("hidden");
+        let oPersonInfo = await getPersonInfo(iPersonId);
+
+        let $oBiography = $(el).children(".bio");
+
+        // Check if p.bio is in the DOM or not
+        if ($oBiography.length === 0) {
+          // need to add p.bio to DOM
+          $(el).append(
+            "<p class='bio'>" +
+              oPersonInfo.biography +
+              "<br>" +
+              "Born: " +
+              oPersonInfo.place_of_birth +
+              "</p>"
+          );
+        } else {
+          $oBiography.toggleClass("hidden");
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
-  });
+  );
   /* jshint ignore:end */
 
   // =================================================================== //

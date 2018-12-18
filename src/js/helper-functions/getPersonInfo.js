@@ -3,7 +3,7 @@ const tmdbActorQuery = require("./tmdbActorQuery");
 
 /* jshint ignore:start */
 
-let getActorInfo = async function(iActorid) {
+let getPersonInfo = async function(iActorid) {
   let actorInfo = await tmdbActorQuery(iActorid);
   return actorInfo;
 };
@@ -12,4 +12,4 @@ let getActorInfo = async function(iActorid) {
 // ============== End of displayMoviePage function =========================== //
 // =========================================================================== //
 
-module.exports = getActorInfo;
+module.exports = getPersonInfo;
