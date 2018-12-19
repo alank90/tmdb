@@ -146,7 +146,8 @@ span {
   margin-bottom: 1.5vh;
 }
 
-p, ul {
+p,
+ul {
   font-family: "Buda", cursive;
   color: #1d1c19;
   font-weight: 500;
@@ -190,6 +191,7 @@ a {
 
 .character,
 .crew,
+.director-writer,
 .year,
 .runtime,
 .plot,
@@ -207,6 +209,7 @@ a {
 .cast,
 .crew {
   text-decoration-line: underline;
+  max-width: 100%;
 }
 
 .character,
@@ -235,6 +238,15 @@ ul {
     margin: 5px;
     text-decoration: none;
   }
+  li:not(.crew) {
+   font-size: 2.2 vw;
+   margin: 0 25px;
+  }
+  li:not(.crew) span {
+    margin: 0 15px;
+    display: inline-block;
+  }
+
 
 #poster {
   max-width: 30vw;

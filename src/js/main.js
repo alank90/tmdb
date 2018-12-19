@@ -107,23 +107,13 @@ $(document).ready(function() {
       aCrew.forEach((el, index) => {
         if ($(".crew:last > span:first").text() === el.job) {
           $oContainer
-            .find(".crew:last > span:last")
-            .append(
-              "<li><span class='director-writer' data-crew-index=" +
-                index +
-                ">" +
-                el.name +
-                "</span></li>"
-            );
-        } else if (aCrew.length - 1 === index) {
-          $oContainer
-            .find(".crew:last > span:last")
+            .find(".production .crew:last")
             .append(
               "<span class='director-writer' data-crew-index=" +
                 index +
                 ">" +
                 el.name +
-                "</span></li>"
+                "</span>"
             );
         } else {
           $oContainer
