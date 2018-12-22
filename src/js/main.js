@@ -202,13 +202,31 @@ $(document).ready(function() {
 
         let oPersonInfo = await getPersonInfo(iPersonId);
 
-        let $oBiography = $(el).children(".bio");
+        let $oBiography = $(el).closest("li");
 
         // Check if p.bio is in the DOM or not
-        if ($oBiography.length === 0) {
+        if ($oBiography.children(".bio").length === 0) {
           // need to add p.bio to DOM
-          $(el).append(
-            "<p class='bio'>" +
+          $oBiography.append(
+            "<p class='bio' data-crew-index=" +
+              $(el).attr("data-crew-index") +
+              ">" +
+              oPersonInfo.biography +
+              "<br>" +
+              "Born: " +
+              oPersonInfo.place_of_birth +
+              "</p>"
+          );
+          // Newly clicked person has not been clicked before so
+          // add it to the DOM
+        } else if (
+          $(el).attr("data-crew-index") !==
+          $oBiography.children(".bio").attr("data-crew-index")
+        ) {
+          $oBiography.append(
+            "<p class='bio' data-crew-index=" +
+              $(el).attr("data-crew-index") +
+              ">" +
               oPersonInfo.biography +
               "<br>" +
               "Born: " +
@@ -216,7 +234,7 @@ $(document).ready(function() {
               "</p>"
           );
         } else {
-          $oBiography.toggleClass("hidden");
+          $oBiography.children(".bio").toggleClass("hidden");
         }
       } catch (e) {
         console.log(e);
