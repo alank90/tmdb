@@ -187,8 +187,7 @@ $(document).ready(function() {
     async function(event) {
       try {
         const el = event.target;
-        console.log(el);
-
+        
         if ($(el).hasClass("actor")) {
           var iPersonId =
             oMovieInfo.credits.cast[$(el).data("character-index")].id;
@@ -198,17 +197,16 @@ $(document).ready(function() {
           console.log("Error with Personid");
         }
 
-        console.log(`iPersonId is ${iPersonId}`);
-
+        
         let oPersonInfo = await getPersonInfo(iPersonId);
 
         // This the Parent li for the clicked actor or crew
-        let $oBiography = $(el).closest("li");
+        let $oThisCrewItems = $(el).closest("li");
 
         // Check if any bio exist in DOM for this actor or crew member
-        if ($oBiography.children(".bio").length === 0) {
+        if ($oThisCrewItems.children(".bio").length === 0) {
           // need to add p.bio to DOM
-          $oBiography.append(
+          $oThisCrewItems.append(
             "<p class='bio' data-crew-index=" +
               $(el).attr("data-crew-index") +
               ">" +
@@ -221,10 +219,28 @@ $(document).ready(function() {
           // Check if clicked actor/crew bio has been clicked before. If
           // new add it to the DOM and hide if not
         } else if (
-          $(el).attr("data-crew-index") !==
-          $oBiography.children(".bio").attr("data-crew-index")
+          // Clicked item already in $oThisCrewItems.children(".bio") object array
+          // so toggle its visibility
+          $(el).attr("data-crew-index") ===
+          $oThisCrewItems.children(".bio").attr("data-crew-index")
         ) {
-          $oBiography.append(
+          $oThisCrewItems.children(".bio").toggleClass("hidden");
+        } 
+        
+          
+          // Check p.bio array for clicked writer or actor
+          // Doesnt work. Not going thru the .each function
+        else if ($oThisCrewItems.children(".bio").length > 0) {
+          $oThisCrewItems.children(".bio").each(function() {
+            if (
+              $(this).attr("data-crew-index") === $(el).attr("data-crew-index")
+            ) {
+              $(this).toggleClass(".hidden"); // Is in object array, toggle its class
+            }
+          });
+        } else {
+          // Add clicked item to $oThisCrewItems.children(".bio") object array
+          $oThisCrewItems.append(
             "<p class='bio' data-crew-index=" +
               $(el).attr("data-crew-index") +
               ">" +
@@ -234,8 +250,6 @@ $(document).ready(function() {
               oPersonInfo.place_of_birth +
               "</p>"
           );
-        } else {
-          $oBiography.children(".bio").toggleClass("hidden");
         }
       } catch (e) {
         console.log(e);
@@ -243,6 +257,30 @@ $(document).ready(function() {
     }
   );
   /* jshint ignore:end */
+
+  // Check if clicked item already showing
+  /* $(el).attr("data-crew-index") !==
+          $oThisCrewItems.children(".bio").attr("data-crew-index")
+        ) {
+          $oThisCrewItems.children('.bio').each(function(index) {
+            if (
+              $(this).attr("data-crew-index") === $(el).attr("data-crew-index")
+            ) {
+              $(this).toggleClass(".hidden");
+            }
+          });
+        } else { // else add it to .crew jquery object
+          $oThisCrewItems.append(
+            "<p class='bio' data-crew-index=" +
+              $(el).attr("data-crew-index") +
+              ">" +
+              oPersonInfo.biography +
+              "<br>" +
+              "Born: " +
+              oPersonInfo.place_of_birth +
+              "</p>"
+          );
+        } */
 
   // =================================================================== //
   // =========== End Event Handler Actor Info ========================= //
