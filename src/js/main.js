@@ -202,9 +202,10 @@ $(document).ready(function() {
 
         let oPersonInfo = await getPersonInfo(iPersonId);
 
+        // This the Parent li for the clicked actor or crew
         let $oBiography = $(el).closest("li");
 
-        // Check if p.bio is in the DOM or not
+        // Check if any bio exist in DOM for this actor or crew member
         if ($oBiography.children(".bio").length === 0) {
           // need to add p.bio to DOM
           $oBiography.append(
@@ -217,8 +218,8 @@ $(document).ready(function() {
               oPersonInfo.place_of_birth +
               "</p>"
           );
-          // Newly clicked person has not been clicked before so
-          // add it to the DOM
+          // Check if clicked actor/crew bio has been clicked before. If
+          // new add it to the DOM and hide if not
         } else if (
           $(el).attr("data-crew-index") !==
           $oBiography.children(".bio").attr("data-crew-index")
