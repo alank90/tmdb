@@ -187,7 +187,7 @@ $(document).ready(function() {
     async function(event) {
       try {
         const el = event.target;
-        
+
         if ($(el).hasClass("actor")) {
           var iPersonId =
             oMovieInfo.credits.cast[$(el).data("character-index")].id;
@@ -197,7 +197,6 @@ $(document).ready(function() {
           console.log("Error with Personid");
         }
 
-        
         let oPersonInfo = await getPersonInfo(iPersonId);
 
         // This the Parent li for the clicked actor or crew
@@ -216,71 +215,47 @@ $(document).ready(function() {
               oPersonInfo.place_of_birth +
               "</p>"
           );
+
           // Check if clicked actor/crew bio has been clicked before. If
-          // new add it to the DOM and hide if not
-        } else if (
-          // Clicked item already in $oThisCrewItems.children(".bio") object array
-          // so toggle its visibility
-          $(el).attr("data-crew-index") ===
-          $oThisCrewItems.children(".bio").attr("data-crew-index")
-        ) {
-          $oThisCrewItems.children(".bio").toggleClass("hidden");
-        } 
-        
-          
-          // Check p.bio array for clicked writer or actor
-          // Doesnt work. Not going thru the .each function
-        else if ($oThisCrewItems.children(".bio").length > 0) {
-          $oThisCrewItems.children(".bio").each(function() {
-            if (
-              $(this).attr("data-crew-index") === $(el).attr("data-crew-index")
-            ) {
-              $(this).toggleClass(".hidden"); // Is in object array, toggle its class
+          // in the DOM crew toggle it, else add it
+        } else if ($oThisCrewItems.children(".bio").length > 0) {
+          const clickedItemDataIndexValue = $(el).attr("data-crew-index");
+
+          // Go thru crew DOM and if in it only need
+          // to toggle the object item
+          $(".crew > .bio").each(function(i) {
+            console.log("In each loop");
+            if (clickedItemDataIndexValue === $(this).attr("data-crew-index")) {
+              // crew item in the DOM, just toggle it
+              
+              $oThisCrewItems.children(".bio").toggleClass("hidden");
+              return;
+
+            } else {
+              // clicked crew item is not in the DOM we need to
+              // add it to DOM 
+              $oThisCrewItems.append(
+                "<p class='bio' data-crew-index=" +
+                  $(el).attr("data-crew-index") +
+                  ">" +
+                  oPersonInfo.biography +
+                  "<br>" +
+                  "Born: " +
+                  oPersonInfo.place_of_birth +
+                  "</p>"
+              );
+              // clicked item added to object array
+              // breakout of .each loop and return
+              return;
             }
-          });
-        } else {
-          // Add clicked item to $oThisCrewItems.children(".bio") object array
-          $oThisCrewItems.append(
-            "<p class='bio' data-crew-index=" +
-              $(el).attr("data-crew-index") +
-              ">" +
-              oPersonInfo.biography +
-              "<br>" +
-              "Born: " +
-              oPersonInfo.place_of_birth +
-              "</p>"
-          );
-        }
+          }); // End .each, I think this is wrong. Should end earlier in else/if
+        } // End else/if
       } catch (e) {
         console.log(e);
       }
     }
   );
   /* jshint ignore:end */
-
-  // Check if clicked item already showing
-  /* $(el).attr("data-crew-index") !==
-          $oThisCrewItems.children(".bio").attr("data-crew-index")
-        ) {
-          $oThisCrewItems.children('.bio').each(function(index) {
-            if (
-              $(this).attr("data-crew-index") === $(el).attr("data-crew-index")
-            ) {
-              $(this).toggleClass(".hidden");
-            }
-          });
-        } else { // else add it to .crew jquery object
-          $oThisCrewItems.append(
-            "<p class='bio' data-crew-index=" +
-              $(el).attr("data-crew-index") +
-              ">" +
-              oPersonInfo.biography +
-              "<br>" +
-              "Born: " +
-              oPersonInfo.place_of_birth +
-              "</p>"
-          );
-        } */
 
   // =================================================================== //
   // =========== End Event Handler Actor Info ========================= //
