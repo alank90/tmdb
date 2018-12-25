@@ -200,12 +200,12 @@ $(document).ready(function() {
         let oPersonInfo = await getPersonInfo(iPersonId);
 
         // This the Parent li for the clicked actor or crew
-        let $oThisCrewItems = $(el).closest("li");
+        let $oThisClickedCastOrCrewParent = $(el).closest("li");
 
         // Check if any bio exist in DOM for this actor or crew member
-        if ($oThisCrewItems.children(".bio").length === 0) {
-          // need to add p.bio to DOM
-          $oThisCrewItems.append(
+        if ($oThisClickedCastOrCrewParent.children(".bio").length === 0) {
+          // need to add p.bio for clicked element  to DOM
+          $oThisClickedCastOrCrewParent.append(
             "<p class='bio' data-crew-index=" +
               $(el).attr("data-crew-index") +
               ">" +
@@ -215,50 +215,47 @@ $(document).ready(function() {
               oPersonInfo.place_of_birth +
               "</p>"
           );
-
+        } else if ($oThisClickedCastOrCrewParent.children(".bio").length > 0) {
           // Check if clicked actor/crew bio has been clicked before. If
           // in the DOM crew toggle it, else add it
-        } else if ($oThisCrewItems.children(".bio").length > 0) {
-          const clickedItemDataIndexValue = $(el).attr("data-crew-index");
+          let iClickedPersonDataIndexValue = $(el).attr("data-crew-index");
 
-          // Go thru crew DOM and if in it only need
-          // to toggle the object item
-          $(".crew > .bio").each(function(i) {
+          // Go thru .bio DOM elements and see if present
+          // and toggle
+          $($oThisClickedCastOrCrewParent.children(".bio")).each(function(i) {
             console.log("In each loop");
-            if (clickedItemDataIndexValue === $(this).attr("data-crew-index")) {
+            if (iClickedPersonDataIndexValue === $(this).attr("data-crew-index")) {
               // crew item in the DOM, just toggle it
-              
-              $oThisCrewItems.children(".bio").toggleClass("hidden");
-              return;
-
-            } else {
-              // clicked crew item is not in the DOM we need to
-              // add it to DOM 
-              $oThisCrewItems.append(
-                "<p class='bio' data-crew-index=" +
-                  $(el).attr("data-crew-index") +
-                  ">" +
-                  oPersonInfo.biography +
-                  "<br>" +
-                  "Born: " +
-                  oPersonInfo.place_of_birth +
-                  "</p>"
-              );
-              // clicked item added to object array
-              // breakout of .each loop and return
-              return;
+              $(this).toggleClass("hidden");
+              return; // End event handler execution
             }
-          }); // End .each, I think this is wrong. Should end earlier in else/if
+          }); // End .each
         } // End else/if
+        else {
+          // Clicked Person/Cast was not in DOM so we will add it
+          // We only get this far if the clicked Actor/Crew Bio
+          // was not found in the DOM
+          $oThisClickedCastOrCrewParent.append(
+            "<p class='bio' data-crew-index=" +
+              $(el).attr("data-crew-index") +
+              ">" +
+              oPersonInfo.biography +
+              "<br>" +
+              "Born: " +
+              oPersonInfo.place_of_birth +
+              "</p>"
+          );
+        }
       } catch (e) {
         console.log(e);
       }
     }
   );
+
   /* jshint ignore:end */
 
   // =================================================================== //
-  // =========== End Event Handler Actor Info ========================= //
+  // =========== End Event Handler Actor/Crew Info ===================== //
   // ================================================================== //
 
   // ============================================================== //
