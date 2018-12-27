@@ -3,6 +3,7 @@
 // ========== Module Dependencies ================= //
 const getMovieInfo = require("./helper-functions/getMovieInfo");
 const getPersonInfo = require("./helper-functions/getPersonInfo");
+const isInDom = require("./helper-functions/isInDom");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -200,12 +201,12 @@ $(document).ready(function() {
         let oPersonInfo = await getPersonInfo(iPersonId);
 
         // This the Parent li for the clicked actor or crew
-        let $oThisClickedCastOrCrewParent = $(el).closest("li");
+        let $oClickedParent = $(el).closest("li");
 
         // Check if any bio exist in DOM for this actor or crew member
-        if ($oThisClickedCastOrCrewParent.children(".bio").length === 0) {
+        if ($oClickedParent.children(".bio").length === 0) {
           // need to add p.bio for clicked element  to DOM
-          $oThisClickedCastOrCrewParent.append(
+          $oClickedParent.append(
             "<p class='bio' data-crew-index=" +
               $(el).attr("data-crew-index") +
               ">" +
@@ -215,27 +216,24 @@ $(document).ready(function() {
               oPersonInfo.place_of_birth +
               "</p>"
           );
-        } else if ($oThisClickedCastOrCrewParent.children(".bio").length > 0) {
+        } else if ($oClickedParent.children(".bio").length > 0) {
           // Check if clicked actor/crew bio has been clicked before. If
           // in the DOM crew toggle it, else add it
-          let iClickedPersonDataIndexValue = $(el).attr("data-crew-index");
-
-          // Go thru .bio DOM elements and see if present
-          // and toggle
-          $($oThisClickedCastOrCrewParent.children(".bio")).each(function(i) {
-            console.log("In each loop");
-            if (iClickedPersonDataIndexValue === $(this).attr("data-crew-index")) {
-              // crew item in the DOM, just toggle it
-              $(this).toggleClass("hidden");
-              return; // End event handler execution
-            }
-          }); // End .each
-        } // End else/if
-        else {
+          let dataIndexValue = $(el).attr("data-crew-index");
+          if (
+            isInDom(
+              $oClickedParent,
+              dataIndexValue,
+              $(this).attr("data-crew-index")
+            )
+          ) {
+            // toggle element
+          }
+        } else {
           // Clicked Person/Cast was not in DOM so we will add it
           // We only get this far if the clicked Actor/Crew Bio
           // was not found in the DOM
-          $oThisClickedCastOrCrewParent.append(
+          $oClickedParent.append(
             "<p class='bio' data-crew-index=" +
               $(el).attr("data-crew-index") +
               ">" +
