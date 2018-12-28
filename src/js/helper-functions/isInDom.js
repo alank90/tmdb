@@ -1,20 +1,19 @@
-check = function($oClickedParent, iClicked, $this_clicked) {
+check = function($oClickedParent, iClicked) {
   // Go thru .bio DOM elements and see if present
   // and toggle
+  let inDom = false;
+  console.log($oClickedParent);
   $($oClickedParent.children(".bio")).each(function(i) {
-    console.log("In the Each");
-    console.log(iClicked);
-    console.log($this_clicked);
-    if (iClicked === $this_clicked) {
-      // crew item in the DOM, just toggle it
-      console.log("In the if");
-      console.log("toggle the element" + $this_clicked);
-      $(this).toggleClass("hidden");
-      return true;
-    } else {
-      return false;
+    console.log("Span element clicked " + iClicked);
+    console.log(
+      "This .each data-index-value " + $(this).attr("data-crew-index")
+    );
+    if (iClicked === $(this).attr("data-crew-index")) {
+      // clicked actor/item in the DOM
+      inDom = $(this);
     }
   }); // End .each
+  return inDom;
 };
 
 module.exports = check;

@@ -186,50 +186,52 @@ $(document).ready(function() {
     "click",
     ".actor, .director-writer",
     async function(event) {
-      try {
-        const el = event.target;
+      /*  try { */
+      const el = event.target;
 
-        if ($(el).hasClass("actor")) {
-          var iPersonId =
-            oMovieInfo.credits.cast[$(el).data("character-index")].id;
-        } else if ($(el).hasClass("director-writer")) {
-          var iPersonId = oMovieInfo.credits.crew[$(el).data("crew-index")].id;
+      if ($(el).hasClass("actor")) {
+        var iPersonId =
+          oMovieInfo.credits.cast[$(el).data("character-index")].id;
+      } else if ($(el).hasClass("director-writer")) {
+        var iPersonId = oMovieInfo.credits.crew[$(el).data("crew-index")].id;
+      } else {
+        console.log("Error with Personid");
+      }
+
+      let oPersonInfo = await getPersonInfo(iPersonId);
+
+      // This the Parent li for the clicked actor or crew
+      let $oClickedParent = $(el).closest("li");
+
+      // Check if any bio exist in DOM for this actor or crew member
+      if ($oClickedParent.children(".bio").length === 0) {
+        // need to add p.bio for clicked element  to DOM
+        $oClickedParent.append(
+          "<p class='bio' data-crew-index=" +
+            $(el).attr("data-crew-index") +
+            ">" +
+            oPersonInfo.biography +
+            "<br>" +
+            "Born: " +
+            oPersonInfo.place_of_birth +
+            "</p>"
+        );
+      } else {
+        // Check if clicked actor/crew bio has been clicked before. If
+        // in the DOM toggle it
+        let dataIndexValue = $(el).attr("data-crew-index");
+        let checkDom = isInDom($oClickedParent, dataIndexValue);
+
+        if (checkDom) {
+          // toggle element
+          console.log("In main.js if clause");
+          let p_bio = $(this)
+            .parent()
+            .children("bio");
+          console.log(p_bio);
+          p_bio.toggleClass("hidden");
         } else {
-          console.log("Error with Personid");
-        }
-
-        let oPersonInfo = await getPersonInfo(iPersonId);
-
-        // This the Parent li for the clicked actor or crew
-        let $oClickedParent = $(el).closest("li");
-
-        // Check if any bio exist in DOM for this actor or crew member
-        if ($oClickedParent.children(".bio").length === 0) {
-          // need to add p.bio for clicked element  to DOM
-          $oClickedParent.append(
-            "<p class='bio' data-crew-index=" +
-              $(el).attr("data-crew-index") +
-              ">" +
-              oPersonInfo.biography +
-              "<br>" +
-              "Born: " +
-              oPersonInfo.place_of_birth +
-              "</p>"
-          );
-        } else if ($oClickedParent.children(".bio").length > 0) {
-          // Check if clicked actor/crew bio has been clicked before. If
-          // in the DOM crew toggle it, else add it
-          let dataIndexValue = $(el).attr("data-crew-index");
-          if (
-            isInDom(
-              $oClickedParent,
-              dataIndexValue,
-              $(this).attr("data-crew-index")
-            )
-          ) {
-            // toggle element
-          }
-        } else {
+          // add it to the DOM
           // Clicked Person/Cast was not in DOM so we will add it
           // We only get this far if the clicked Actor/Crew Bio
           // was not found in the DOM
@@ -244,9 +246,10 @@ $(document).ready(function() {
               "</p>"
           );
         }
-      } catch (e) {
-        console.log(e);
       }
+      /* } catch (e) {
+        console.log(e);
+      } */
     }
   );
 
