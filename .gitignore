@@ -1,3 +1,6 @@
+#Project Specific
+.vscode/
+
 # Logs
 logs
 *.log
