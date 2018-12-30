@@ -8,7 +8,10 @@ check = function($oClickedParent, iClicked) {
     console.log(
       "This .each data-index-value " + $(this).attr("data-crew-index")
     );
-    if (iClicked === $(this).attr("data-crew-index")) {
+    if (
+      iClicked === $(this).attr("data-character-index") ||
+      iClicked === $(this).attr("data-crew-index")
+    ) {
       // clicked actor/item in the DOM
       inDom = $(this);
     }

@@ -219,17 +219,23 @@ $(document).ready(function() {
       } else {
         // Check if clicked actor/crew bio has been clicked before. If
         // in the DOM toggle it
-        let dataIndexValue = $(el).attr("data-crew-index");
+        let dataIndexValue;
+        if (
+          !($(el).attr("data-character-index") || $(el).attr("data-crew-index"))
+        ) {
+          throw "No $(el).attr data-*-index";
+        } else if ($(el).attr("data-character-index")) {
+          dataIndexValue = $(el).attr("data-character-index");
+        } else {
+          dataIndexValue = $(el).attr("data-crew-index");
+        }
+
         let checkDom = isInDom($oClickedParent, dataIndexValue);
 
         if (checkDom) {
           // toggle element
           console.log("In main.js if clause");
-          let p_bio = $(this)
-            .parent()
-            .children("bio");
-          console.log(p_bio);
-          p_bio.toggleClass("hidden");
+          checkDom.toggleClass("hidden");
         } else {
           // add it to the DOM
           // Clicked Person/Cast was not in DOM so we will add it
@@ -237,7 +243,7 @@ $(document).ready(function() {
           // was not found in the DOM
           $oClickedParent.append(
             "<p class='bio' data-crew-index=" +
-              $(el).attr("data-crew-index") +
+              dataIndexValue +
               ">" +
               oPersonInfo.biography +
               "<br>" +
