@@ -76,7 +76,6 @@ $(document).ready(function() {
       aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
         return index <= 9;
       });
-      console.log(aCastOfCharacters);
 
       // Crew listing
       let aCrew = oMovieInfo.credits.crew;
@@ -88,7 +87,6 @@ $(document).ready(function() {
           (el.department === "Writing" && el.job === "Writer")
         );
       });
-      console.log(aCrew);
 
       // Then print out
       aCastOfCharacters.forEach((el, index) => {
