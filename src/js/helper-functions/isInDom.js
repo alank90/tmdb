@@ -2,17 +2,17 @@ check = function($oClickedParent, iClicked) {
   // Go thru .bio DOM elements and see if present
   // and toggle
   let inDom = false;
-  console.log($oClickedParent);
+
+  // Iterate thru 0 or more p.bio's to see if the clicked actor/crew
+  // already exist in the DOM from a previous click
   $($oClickedParent.children(".bio")).each(function(i) {
-    console.log("Span element clicked " + iClicked);
-    console.log(
-      "This .each data-index-value " + $(this).attr("data-crew-index")
-    );
     if (
       iClicked === $(this).attr("data-character-index") ||
       iClicked === $(this).attr("data-crew-index")
     ) {
-      // clicked actor/item in the DOM
+      // Clicked actor/item exists in the DOM
+      // We will return The clicked actor/crew's
+      // p.bio element and toggle it's .hidden class in main.js
       inDom = $(this);
     }
   }); // End .each
