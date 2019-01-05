@@ -1,10 +1,10 @@
 // =========  /src/js/helper-functions/getBioInfo.js ==================== //
 
-const getPersonInfo = require("./getPersonInfo");
-const isInDom = require("./isInDom");
+const getPersonInfo = require("../helper-functions/getPersonInfo");
+const isInDom = require("../helper-functions/isInDom");
 
 /* jshint ignore:start */
-const getBioInfo = async function(event, oMovieInfo) {
+const displayBioInfo = async function(event, oMovieInfo) {
   try {
     const el = event.target;
 
@@ -91,4 +91,4 @@ const getBioInfo = async function(event, oMovieInfo) {
 };
 /* jshint ignore:end */
 
-module.exports = getBioInfo;
+module.exports = displayBioInfo;
