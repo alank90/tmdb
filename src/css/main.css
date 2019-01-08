@@ -272,6 +272,7 @@ fieldset {
 legend {
   font-family: "Playfair Display SC", serif;
   font-size: 2.5vw;
+  font-weight: 700;
   color: #c5c0c3;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
   text-align: center;
@@ -289,7 +290,7 @@ hr {
 
 input, textarea, select {
   font-size: 1.8vw;
-  max-width: 35vw;
+  max-width: 30vw;
   margin-top: 0.8rem;
   padding: 2px 5px;
   border: 0 none;
@@ -333,7 +334,7 @@ label {
   text-align: left;
   padding: 2px 0;
   white-space: nowrap;
-  cursor: pointer;
+  cursor: default;
   color: #c5c0c3;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
   margin-top: 0.9rem;
@@ -356,7 +357,7 @@ button {
   margin-top: 5vh;
   -webkit-transition: font-size 0.8s;
   -o-transition: font-size 0.8s;
-  transition: font-size 0.8s;
+  transition: font-size 0.8s ease-out;
 }
 
 button:hover {
@@ -364,7 +365,7 @@ button:hover {
 }
 
 #year {
-  max-width: 20vw;
+  max-width: 10vw;
 }
 
 #radioButton {
@@ -377,17 +378,20 @@ button:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: pointer;
+  cursor: default;
   color: #c5c0c3;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
   margin-left: 25vw;
   margin-top: 2rem;
 }
+  input[type=radio] {
+    transform: scale(1.5);
+  }
 
 .radioLabel {
   display: inline-block;
   font-family: "Playfair Display SC", serif;
-  font-size: 1.5vw;
+  font-size: 1.7vw;
   margin-left: 2rem;
   margin-right: 0.7rem;
   width: auto;
