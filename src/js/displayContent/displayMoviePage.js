@@ -45,9 +45,9 @@ let displayPage = async function(oMovieInfo, $oContainer) {
 
   // Cast Listing
   let aCastOfCharacters = oMovieInfo.credits.cast;
-  // filter first 8 cast entries
+  // filter first 10 cast entries
   aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
-    return index <= 9;
+    return index <= 10;
   });
 
   // Crew listing
@@ -69,7 +69,7 @@ let displayPage = async function(oMovieInfo, $oContainer) {
         "<li class='character'> <span>" +
           el.character +
           "</span><span class='actor' title='Click To See Their Biography' data-character-index=" +
-          index +
+          el.id +
           ">" +
           el.name +
           "</span> </li>"
@@ -94,7 +94,7 @@ let displayPage = async function(oMovieInfo, $oContainer) {
           "<li class='crew'><span>" +
             el.job +
             "</span><span title='Click To See Their Biography' class='director-writer' data-crew-index=" +
-            index +
+            el.id +
             ">" +
             el.name +
             "</span>"

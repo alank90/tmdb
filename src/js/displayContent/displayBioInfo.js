@@ -9,9 +9,9 @@ const displayBioInfo = async function(event, oMovieInfo) {
     const el = event.target;
 
     if ($(el).hasClass("actor")) {
-      var iPersonId = oMovieInfo.credits.cast[$(el).data("character-index")].id;
+      var iPersonId = $(el).data("character-index");
     } else if ($(el).hasClass("director-writer")) {
-      var iPersonId = oMovieInfo.credits.crew[$(el).data("crew-index")].id;
+      var iPersonId = $(el).data("crew-index");
     } else {
       console.log("Error with Personid");
     }
@@ -33,7 +33,7 @@ const displayBioInfo = async function(event, oMovieInfo) {
             "<br>" +
             "Born: " +
             oPersonInfo.place_of_birth +
-            "</p>"
+            "<img src=" +  oPersonInfo.profile_path + "></p>" 
         );
       } else if ($oClickedParent.hasClass("crew")) {
         $oClickedParent.append(
