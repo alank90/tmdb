@@ -33,7 +33,7 @@ const displayBioInfo = async function(event, oMovieInfo) {
             "<br>" +
             "Born: " +
             oPersonInfo.place_of_birth +
-            "<img src=" +  oPersonInfo.profile_path + "></p>" 
+            "<img src=https://image.tmdb.org/t/p/w342/" +  oPersonInfo.profile_path + "></p>" 
         );
       } else if ($oClickedParent.hasClass("crew")) {
         $oClickedParent.append(
