@@ -115,6 +115,13 @@ img[src="./src/img/movie-icon2.png"] {
   animation-iteration-count: 3;
 }
 
+img.bio-pic {
+  max-width: 60%;
+  max-height: 60%;
+  display: inline-block;
+  margin: 15px 0;
+}
+
 h2 {
   font-family: "Playfair Display SC", serif;
   color: #c5c0c3;
@@ -190,6 +197,9 @@ ul {
 a {
   color: darkslategrey;
   font-size: 3rem;
+}
+a[href="null"] {
+  cursor: not-allowed;
 }
 
 .character,

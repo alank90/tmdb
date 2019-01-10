@@ -4,7 +4,7 @@ const getPersonInfo = require("../helper-functions/getPersonInfo");
 const isInDom = require("../helper-functions/isInDom");
 
 /* jshint ignore:start */
-const displayBioInfo = async function(event, oMovieInfo) {
+const displayBioInfo = async function(event) {
   try {
     const el = event.target;
 
@@ -23,8 +23,13 @@ const displayBioInfo = async function(event, oMovieInfo) {
 
     // Check if any bio exist in DOM for this actor or crew member
     if ($oClickedParent.children(".bio").length === 0) {
+      // check to see if any bio info to display
+      if (oPersonInfo.biography === "") {
+        $oClickedParent.append("<p class='bio'>No Biography Available</>");
+        return false;
+      }
       // need to add p.bio for clicked element  to DOM
-      if ($oClickedParent.hasClass("character")) {
+      else if ($oClickedParent.hasClass("character")) {
         $oClickedParent.append(
           "<p class='bio' data-character-index=" +
             $(el).attr("data-character-index") +
@@ -33,7 +38,13 @@ const displayBioInfo = async function(event, oMovieInfo) {
             "<br>" +
             "Born: " +
             oPersonInfo.place_of_birth +
-            "<img src=https://image.tmdb.org/t/p/w342/" +  oPersonInfo.profile_path + "></p>" 
+            "</p>" +
+            "<a class='person-homepage' href='" +
+            oPersonInfo.homepage +
+            "' title='Click to go to Person&apos;s Home Page' target='_blank'>" +
+            "<img class='bio-pic' alt='No Picture Available' src=https://image.tmdb.org/t/p/w342/" +
+            oPersonInfo.profile_path +
+            "></a>"
         );
       } else if ($oClickedParent.hasClass("crew")) {
         $oClickedParent.append(
@@ -44,7 +55,13 @@ const displayBioInfo = async function(event, oMovieInfo) {
             "<br>" +
             "Born: " +
             oPersonInfo.place_of_birth +
-            "</p>"
+            "</p>" +
+            "<a class='person-homepage' href='" +
+            oPersonInfo.homepage +
+            "' title='Click to go to Person&apos;s Home Page' target='_blank'>" +
+            "<img class='bio-pic' alt='No Picture Available' src=https://image.tmdb.org/t/p/w342/" +
+            oPersonInfo.profile_path +
+            "></a>"
         );
       } else {
         throw "errror. No data-*-index attribute in <li> parent element";
@@ -68,6 +85,7 @@ const displayBioInfo = async function(event, oMovieInfo) {
       if (checkDom) {
         // toggle element
         checkDom.toggleClass("hidden");
+        checkDom.next().toggleClass("hidden"); // toggle bio picture also
       } else {
         // Add it to the DOM
         // Clicked Person/Cast's biography was not in DOM so we will add it
@@ -81,10 +99,28 @@ const displayBioInfo = async function(event, oMovieInfo) {
             "<br>" +
             "Born: " +
             oPersonInfo.place_of_birth +
-            "</p>"
+            "</p>" +
+            "<a class='person-homepage' href='" +
+            oPersonInfo.homepage +
+            "' title='Click to go to Person&apos;s Home Page' target='_blank'>" +
+            "<img class='bio-pic' alt='No Picture Available' src=https://image.tmdb.org/t/p/w342/" +
+            oPersonInfo.profile_path +
+            "></a>"
         );
       }
     }
+
+    // ============================================================== //
+    // === Empty bio home page links are now disabled =============== //
+    $(".cast, .production").on("click", "a[href='null']", function(e) {
+      e.preventDefault();
+    });
+
+    $(".cast, .production").on("mouseenter", "a[href='null']", function(e) {
+      const $el = $(e.target).parent();
+      $el.removeAttr("title");
+    });
+    // ========== End Event handler ================================= //
   } catch (e) {
     console.log(e);
   }

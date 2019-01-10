@@ -54,7 +54,7 @@ $(document).ready(function() {
   $(".cast, .production").on("click", ".actor, .director-writer", function(
     event
   ) {
-    displayBioInfo(event, oMovieInfo);
+    displayBioInfo(event);
   });
 
   // ================================================================== //
@@ -82,5 +82,6 @@ $(document).ready(function() {
   // ================================================================ //
   // ============ End #clear button event handler =================== //
   // ================================================================ //
+
   
 }); // ============= End document.ready ========================== //

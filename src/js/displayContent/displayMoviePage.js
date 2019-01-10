@@ -62,7 +62,7 @@ let displayPage = async function(oMovieInfo, $oContainer) {
   });
 
   // Then print out
-  aCastOfCharacters.forEach((el, index) => {
+  aCastOfCharacters.forEach((el) => {
     $oContainer
       .find(".cast")
       .append(
@@ -76,13 +76,13 @@ let displayPage = async function(oMovieInfo, $oContainer) {
       );
   });
 
-  aCrew.forEach((el, index) => {
+  aCrew.forEach((el) => {
     if ($(".crew:last > span:first").text() === el.job) {
       $oContainer
         .find(".production .crew:last")
         .append(
           "<span class='director-writer' title='Click To See Their Biography' data-crew-index=" +
-            index +
+            el.id +
             ">" +
             el.name +
             "</span>"
