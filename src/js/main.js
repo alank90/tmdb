@@ -9,6 +9,7 @@ $(document).ready(function() {
   // =====  Declare Method Variables ============= //
   var $oForm = $("form");
   var $oContainer = $("#container");
+  var $oMovie_Cast_Crew = $("#movie_cast_crew");
   var oMovieInfo = {};
   var $oPoster = $("#poster");
   var $oClear = $("#clear");
@@ -16,6 +17,7 @@ $(document).ready(function() {
   // ===== End Variable Declarations =========== //
 
   $oContainer.addClass("hidden");
+  $oMovie_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
 
   // ===================================================================== //
@@ -33,9 +35,10 @@ $(document).ready(function() {
         '<center><img src="./src/img/loading.gif" alt="loading..."></center>'
       ); //gif while poster loads.
 
-      displayMoviePage(oMovieInfo, $oContainer);
+      displayMoviePage(oMovieInfo, $oContainer, $oMovie_Cast_Crew);
 
       $oContainer.removeClass("hidden"); // Make Results Container Visible
+      $oMovie_Cast_Crew.removeClass("hidden");
       $oClear.removeClass("hidden"); // Show the clear button
     } else {
       alert("TV series lookup coming soon!");
@@ -73,6 +76,7 @@ $(document).ready(function() {
 
     $oContainer.addClass("hidden");
     $oPoster.addClass("hidden");
+    $oMovie_Cast_Crew.addClass("hidden");
     $oClear.addClass("hidden");
     $(".character").remove();
     $(".crew").remove();
@@ -82,6 +86,4 @@ $(document).ready(function() {
   // ================================================================ //
   // ============ End #clear button event handler =================== //
   // ================================================================ //
-
-  
 }); // ============= End document.ready ========================== //

@@ -23,13 +23,14 @@ const displayBioInfo = async function(event) {
 
     // Check if any bio exist in DOM for this actor or crew member
     if ($oClickedParent.children(".bio").length === 0) {
-      // check to see if any bio info to display
-      if (oPersonInfo.biography === "") {
-        $oClickedParent.append("<p class='bio'>No Biography Available</>");
-        return false;
-      }
       // need to add p.bio for clicked element  to DOM
-      else if ($oClickedParent.hasClass("character")) {
+      if ($oClickedParent.hasClass("character")) {
+        // check to see if any bio info to display
+        if (oPersonInfo.biography === "") {
+          oPersonInfo.biography = "No Biography Available";
+          oPersonInfo.place_of_birth = "Not Available";
+        }
+
         $oClickedParent.append(
           "<p class='bio' data-character-index=" +
             $(el).attr("data-character-index") +
@@ -47,6 +48,11 @@ const displayBioInfo = async function(event) {
             "></a>"
         );
       } else if ($oClickedParent.hasClass("crew")) {
+        if (oPersonInfo.biography === "") {
+          oPersonInfo.biography = "No Biography Available";
+          oPersonInfo.place_of_birth = "Not Available";
+        }
+
         $oClickedParent.append(
           "<p class='bio' data-crew-index=" +
             $(el).attr("data-crew-index") +
@@ -91,6 +97,11 @@ const displayBioInfo = async function(event) {
         // Clicked Person/Cast's biography was not in DOM so we will add it
         // We only get this far if the clicked Actor/Crew Bio
         // was not found in the DOM
+        if (oPersonInfo.biography === "") {
+          oPersonInfo.biography = "No Biography Available";
+          oPersonInfo.place_of_birth = "Not Available";
+        }
+
         $oClickedParent.append(
           "<p class='bio' data-crew-index=" +
             dataIndexValue +
