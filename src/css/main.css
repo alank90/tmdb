@@ -241,12 +241,11 @@ ul {
 p.bio {
   font-size: 1.6rem;
   margin: 5px;
-  transition: font-size .6s ease-in-out;
+  transition: font-size .6s ease-in-out 1.5s;
 }
 
 p.bio:hover {
   font-size: 2.4rem;
-  width: 110%;
 }
 
 li:not(.crew) {
