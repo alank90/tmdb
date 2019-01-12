@@ -7,7 +7,11 @@ $oError.addClass("hidden");
 
 // ==== Call TMDB API and get movie info ============== //
 /* jshint ignore:start */
-let displayPage = async function(oMovieInfo, $oMovie_Data_Plot, $oMovie_Cast_Crew) {
+let displayPage = async function(
+  oMovieInfo,
+  $oMovie_Data_Plot,
+  $oMovie_Cast_Crew
+) {
   // Now we can paint the page w/oMovieInfo object
   // First Lets check state of the Movie Info .movie container
   if ($oError.not(".hidden")) {
