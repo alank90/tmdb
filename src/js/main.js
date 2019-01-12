@@ -8,15 +8,15 @@ const displayBioInfo = require("./displayContent/displayBioInfo");
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
   var $oForm = $("form");
-  var $oContainer = $("#container");
-  var $oMovie_Cast_Crew = $("#movie_cast_crew");
+  var $oMovie_Data_Plot = $("#movie-data-plot");
+  var $oMovie_Cast_Crew = $("#movie-cast-crew");
   var oMovieInfo = {};
   var $oPoster = $("#poster");
   var $oClear = $("#clear");
 
   // ===== End Variable Declarations =========== //
 
-  $oContainer.addClass("hidden");
+  $oMovie_Data_Plot.addClass("hidden");
   $oMovie_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
 
@@ -35,9 +35,9 @@ $(document).ready(function() {
         '<center><img src="./src/img/loading.gif" alt="loading..."></center>'
       ); //gif while poster loads.
 
-      displayMoviePage(oMovieInfo, $oContainer, $oMovie_Cast_Crew);
+      displayMoviePage(oMovieInfo, $oMovie_Data_Plot, $oMovie_Cast_Crew);
 
-      $oContainer.removeClass("hidden"); // Make Results Container Visible
+      $oMovie_Data_Plot.removeClass("hidden"); // Make Results Container Visible
       $oMovie_Cast_Crew.removeClass("hidden");
       $oClear.removeClass("hidden"); // Show the clear button
     } else {
@@ -74,7 +74,7 @@ $(document).ready(function() {
       $oForm.find("input:not[value='movie']").val("");
     }
 
-    $oContainer.addClass("hidden");
+    $oMovie_Data_Plot.addClass("hidden");
     $oPoster.addClass("hidden");
     $oMovie_Cast_Crew.addClass("hidden");
     $oClear.addClass("hidden");

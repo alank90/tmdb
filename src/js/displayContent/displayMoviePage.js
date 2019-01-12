@@ -7,9 +7,9 @@ $oError.addClass("hidden");
 
 // ==== Call TMDB API and get movie info ============== //
 /* jshint ignore:start */
-let displayPage = async function(oMovieInfo, $oContainer, $oMovie_Cast_Crew) {
+let displayPage = async function(oMovieInfo, $oMovie_Data_Plot, $oMovie_Cast_Crew) {
   // Now we can paint the page w/oMovieInfo object
-  // First Lets check state of the Movie Info .container
+  // First Lets check state of the Movie Info .movie container
   if ($oError.not(".hidden")) {
     $oError.addClass("hidden");
   }
@@ -33,13 +33,13 @@ let displayPage = async function(oMovieInfo, $oContainer, $oMovie_Cast_Crew) {
   // Let's fill in the page with oMovieInfo object retrieved from TMDB
 
   // Movie Overview
-  $oContainer
+  $oMovie_Data_Plot
     .find(".title")
     .html("<p class='title'>Movie Title:</p>" + oMovieInfo.title);
-  $oContainer
+  $oMovie_Data_Plot
     .find(".tagline")
     .html("<p class='tagline'></p>" + oMovieInfo.tagline);
-  $oContainer
+  $oMovie_Data_Plot
     .find(".plot")
     .html("<p class='plot'>Movie Overview</p>" + oMovieInfo.overview);
 
