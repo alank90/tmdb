@@ -7,9 +7,13 @@ $oError.addClass("hidden");
 
 // ==== Call TMDB API and get movie info ============== //
 /* jshint ignore:start */
-let displayPage = async function(oMovieInfo, $oContainer) {
+let displayPage = async function(
+  oMovieInfo,
+  $oMovie_Data_Plot,
+  $oMovie_Cast_Crew
+) {
   // Now we can paint the page w/oMovieInfo object
-  // First Lets check state of the Movie Info .container
+  // First Lets check state of the Movie Info .movie container
   if ($oError.not(".hidden")) {
     $oError.addClass("hidden");
   }
@@ -33,21 +37,21 @@ let displayPage = async function(oMovieInfo, $oContainer) {
   // Let's fill in the page with oMovieInfo object retrieved from TMDB
 
   // Movie Overview
-  $oContainer
+  $oMovie_Data_Plot
     .find(".title")
     .html("<p class='title'>Movie Title:</p>" + oMovieInfo.title);
-  $oContainer
+  $oMovie_Data_Plot
     .find(".tagline")
     .html("<p class='tagline'></p>" + oMovieInfo.tagline);
-  $oContainer
+  $oMovie_Data_Plot
     .find(".plot")
     .html("<p class='plot'>Movie Overview</p>" + oMovieInfo.overview);
 
   // Cast Listing
   let aCastOfCharacters = oMovieInfo.credits.cast;
-  // filter first 8 cast entries
+  // filter first 10 cast entries
   aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
-    return index <= 9;
+    return index <= 10;
   });
 
   // Crew listing
@@ -62,39 +66,39 @@ let displayPage = async function(oMovieInfo, $oContainer) {
   });
 
   // Then print out
-  aCastOfCharacters.forEach((el, index) => {
-    $oContainer
+  aCastOfCharacters.forEach(el => {
+    $oMovie_Cast_Crew
       .find(".cast")
       .append(
         "<li class='character'> <span>" +
           el.character +
           "</span><span class='actor' title='Click To See Their Biography' data-character-index=" +
-          index +
+          el.id +
           ">" +
           el.name +
           "</span> </li>"
       );
   });
 
-  aCrew.forEach((el, index) => {
+  aCrew.forEach(el => {
     if ($(".crew:last > span:first").text() === el.job) {
-      $oContainer
+      $oMovie_Cast_Crew
         .find(".production .crew:last")
         .append(
           "<span class='director-writer' title='Click To See Their Biography' data-crew-index=" +
-            index +
+            el.id +
             ">" +
             el.name +
             "</span>"
         );
     } else {
-      $oContainer
+      $oMovie_Cast_Crew
         .find(".production")
         .append(
           "<li class='crew'><span>" +
             el.job +
             "</span><span title='Click To See Their Biography' class='director-writer' data-crew-index=" +
-            index +
+            el.id +
             ">" +
             el.name +
             "</span>"
@@ -102,7 +106,7 @@ let displayPage = async function(oMovieInfo, $oContainer) {
     }
   });
 
-  $oContainer
+  $oMovie_Cast_Crew
     .find(".release_date")
     .html(
       "<p class='release_date'>Release Date:</p>" + oMovieInfo.release_date
@@ -110,20 +114,20 @@ let displayPage = async function(oMovieInfo, $oContainer) {
   oMovieInfo.revenue = oMovieInfo.revenue
     .toFixed(2)
     .replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); //Convert to Dollars
-  $oContainer
+  $oMovie_Cast_Crew
     .find(".revenue")
     .html("<p class='revenue'>Movie Revenues:</p>" + "$" + oMovieInfo.revenue);
-  $oContainer
+  $oMovie_Cast_Crew
     .find(".runtime")
     .html("<p class='runtime'>Runtime:</p>" + oMovieInfo.runtime + " Minutes");
   // Check if there is a Movie Page URL
   if (oMovieInfo.homepage) {
-    $oContainer.find(".movie_url").attr({
+    $oMovie_Cast_Crew.find(".movie_url").attr({
       href: oMovieInfo.homepage,
       target: "_blank"
     });
   } else {
-    $oContainer
+    $oMovie_Cast_Crew
       .find("p .movie_url ")
       .text("Movie Page Not Available")
       .attr("href", "");

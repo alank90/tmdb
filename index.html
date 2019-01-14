@@ -76,7 +76,9 @@
               />
             </div>
 
-            <span id="radioButton">Query Type(Movie or Series):</span>
+            <span id="radioButton"
+              >Query Type<em>(</em>Movie or Series<em>)</em>:</span
+            >
             <span class="radioLabel">Movie</span
             ><input
               type="radio"
@@ -87,31 +89,38 @@
             />
             <span class="radioLabel">Series</span
             ><input type="radio" name="type" value="series" id="r2" />
-
-            <button>Send Request</button>
           </fieldset>
         </form>
+
+        <button class="submit">Send Request</button>
 
         <!-- ==== Here go Results from TMDB query ===== -->
         <p id="poster"></p>
         <!-- Poster floated right. Cant be in the flex box container. -->
-        <div id="container">
+        <div id="movie-data-plot">
           <h3 class="title"></h3>
           <p class="tagline"></p>
-          <br>
+          <br />
           <p class="plot"></p>
+        </div>
 
-          <ul class="cast">Cast</ul>
+        <div id="movie-cast-crew">
+          <ul class="cast">
+            Cast
+          </ul>
 
-          <ul class="production">Crew</ul>
+          <ul class="production">
+            Crew
+          </ul>
 
           <p class="release_date"></p>
           <p class="revenue"></p>
           <p class="runtime"></p>
-          <p><a class="movie_url">Movie Home Page</a></p>
+          <p class="movie_url"><a class="movie_url">Movie Home Page</a></p>
+
+          <p class="error_message"></p>
+          <a href="#"><button id="clear">Clear</button></a>
         </div>
-        <p class="error_message"></p>
-        <a href="#"><button id="clear">Clear</button></a>
       </main>
     </div>
     <!-- end .page-wrap -->
