@@ -4,6 +4,7 @@
 const displayMoviePage = require("./displayContent/displayMoviePage");
 const getMovieInfo = require("./helper-functions/getMovieInfo");
 const displayBioInfo = require("./displayContent/displayBioInfo");
+const searchComplete = require("./helper-functions/searchComplete");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -19,6 +20,9 @@ $(document).ready(function() {
   $oMovie_Data_Plot.addClass("hidden");
   $oMovie_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
+
+  // ======== Initiate Autocomplete =========== //
+  searchComplete();
 
   // ===================================================================== //
   // ============ TMDB Query Event Handler =============================== //
