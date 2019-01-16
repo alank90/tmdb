@@ -336,6 +336,16 @@ select {
   transition: all 0.7s;
 }
 
+/* ======== Autocomplete Stylings ======== */
+.ui-menu .ui-menu-item {
+  font-size: 1.7rem;
+}
+
+.ui-widget {
+  background-color: #edd2b5;
+}
+/* ====== End Autocomplete Stylings =====  */
+
 input:hover,
 textarea:hover,
 select:hover {
