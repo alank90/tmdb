@@ -22,7 +22,22 @@ $(document).ready(function() {
   $oClear.addClass("hidden");
 
   // ======== Initiate Autocomplete =========== //
-  searchComplete();
+  $("#name").on("focus", function() {
+    let radioChecked = false;
+
+    radioChecked = $("input[value=movie]:checked").length > 0;
+    if (radioChecked) {
+      $("#name").autocomplete(); // instantiate autocomplete if necesssary
+      let disabled = $("#name").autocomplete("option", "disabled");
+      if (disabled) {
+        $("#name").autocomplete("option", "disabled", false);
+      }
+      searchComplete();
+    } else {
+      $("#name").autocomplete();
+      $("#name").autocomplete("disable");
+    }
+  });
 
   // ===================================================================== //
   // ============ TMDB Query Event Handler =============================== //
