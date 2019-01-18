@@ -4,6 +4,7 @@
 const displayMoviePage = require("./displayContent/displayMoviePage");
 const getMovieInfo = require("./helper-functions/getMovieInfo");
 const displayBioInfo = require("./displayContent/displayBioInfo");
+const searchComplete = require("./helper-functions/searchComplete");
 
 $(document).ready(function() {
   // =====  Declare Method Variables ============= //
@@ -19,6 +20,24 @@ $(document).ready(function() {
   $oMovie_Data_Plot.addClass("hidden");
   $oMovie_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
+
+  // ======== Initiate Autocomplete =========== //
+  $("#name").on("focus", function() {
+    let radioChecked = false;
+
+    radioChecked = $("input[value=movie]:checked").length > 0;
+    if (radioChecked) {
+      $("#name").autocomplete(); // instantiate autocomplete if necesssary
+      let disabled = $("#name").autocomplete("option", "disabled");
+      if (disabled) {
+        $("#name").autocomplete("option", "disabled", false);
+      }
+      searchComplete();
+    } else {
+      $("#name").autocomplete();
+      $("#name").autocomplete("disable");
+    }
+  });
 
   // ===================================================================== //
   // ============ TMDB Query Event Handler =============================== //

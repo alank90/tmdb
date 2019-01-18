@@ -94,13 +94,15 @@ body {
 /* ====== End Sticky Footer ===*/
 
 h1 {
-  color: #c5c0c3;
-  display: inline;
+  color: #000;
+  display: inline-block;
   font-family: "Playfair Display SC", serif;
-  font-size: 4vw;
+  font-size: 6vw;
   font-weight: 700;
+  margin: 0 auto;
   text-align: center;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
+  text-shadow: 15px 15px 15px rgba(241, 241, 238, 0.664);
+  width: 60vw;
 }
 
 img[src="./src/img/movie-icon2.png"] {
@@ -112,7 +114,7 @@ img[src="./src/img/movie-icon2.png"] {
   margin-left: 1vw;
   margin-right: 1vw;
   margin-top: 3vh;
-  width: 12vw;
+  width: 15vw;
 }
 
 img.bio-pic {
@@ -336,6 +338,42 @@ select {
   transition: all 0.7s;
 }
 
+::-moz-selection {
+  background: rgba(41, 216, 158, 0.52);
+  color: black;
+}
+
+::selection {
+  background: rgba(41, 216, 158, 0.52);
+  color: black;
+}
+input::-moz-selection {
+  background: rgba(224, 166, 6, 0.733);
+  color: white;
+}
+input::selection {
+  background: rgba(224, 166, 6, 0.733);
+  color: white;
+}
+
+
+/* ======== Autocomplete Stylings ======== */
+.ui-menu .ui-menu-item {
+  font-size: 1.7rem;
+}
+.ui-menu-item-wrapper:hover {
+  background-color: rgba(251, 246, 250, 0.5);
+  border: 2px solid black;
+  color: rgba(12, 11, 11, 0.4);
+}
+
+.ui-widget {
+  background-color: #fcfafd;
+  border-radius: 8px;
+  width: 25vw;
+}
+/* ====== End Autocomplete Stylings =====  */
+
 input:hover,
 textarea:hover,
 select:hover {
@@ -461,9 +499,16 @@ input[type="radio"] {
   #year {
     max-width: 20vw;
   }
+  label {
+    margin-left: -20px;
+    margin-right: 20px;
+  }
   input[type="radio"] {
     -webkit-transform: scale(1);
     transform: scale(1);
+  }
+  .ui-menu .ui-menu-item {
+    font-size: 1.2rem;
   }
 }
 
