@@ -99,10 +99,10 @@ h1 {
   font-family: "Playfair Display SC", serif;
   font-size: 6vw;
   font-weight: 700;
+  margin: 0 auto;
   text-align: center;
   text-shadow: 15px 15px 15px rgba(241, 241, 238, 0.664);
   width: 60vw;
-  margin: 0 auto;
 }
 
 img[src="./src/img/movie-icon2.png"] {
@@ -338,9 +338,18 @@ select {
   transition: all 0.7s;
 }
 
+::-moz-selection {
+  background: rgba(41, 216, 158, 0.52);
+  color: black;
+}
+
 ::selection {
   background: rgba(41, 216, 158, 0.52);
   color: black;
+}
+input::-moz-selection {
+  background: rgba(224, 166, 6, 0.733);
+  color: white;
 }
 input::selection {
   background: rgba(224, 166, 6, 0.733);
@@ -354,8 +363,8 @@ input::selection {
 }
 .ui-menu-item-wrapper:hover {
   background-color: rgba(251, 246, 250, 0.5);
-  color: rgba(12, 11, 11, 0.4);
   border: 2px solid black;
+  color: rgba(12, 11, 11, 0.4);
 }
 
 .ui-widget {
