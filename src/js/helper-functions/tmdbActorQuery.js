@@ -1,4 +1,5 @@
 // =========  /src/js/helper-functions/tmdbActorQuery.js ============================ //
+const apiKey = require("../../../config");
 
 // ====================================================== //
 // ======= Let's Get ActorInfo w/async/await =========== //
@@ -7,14 +8,12 @@
 
 const tmdbActorQuery = async function(iActorId) {
   try {
-    let api_key = "5888233c985dfa60ed6be20d8e6726a1";
-
     // Query string to retrieve TMDB Actor Info
     let sQueryActorUrl =
       "https://api.themoviedb.org/3/person/" +
       iActorId +
       "?api_key=" +
-      api_key +
+      apiKey +
       "&language=en-US";
 
     let sAjaxSettings = {
@@ -28,7 +27,7 @@ const tmdbActorQuery = async function(iActorId) {
     };
 
     let actorInfo = await $.ajax(sAjaxSettings);
-   
+
     return actorInfo;
   } catch (e) {
     console.log(e);

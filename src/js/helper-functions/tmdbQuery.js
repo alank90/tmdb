@@ -1,4 +1,5 @@
 // =========  /src/js/helper-functions/tmdbQuery.js ============================ //
+const apiKey = require("../../../config");
 
 // ====================================================== //
 // ======= Let's Get Movie Info w/async/await =========== //
@@ -11,11 +12,12 @@ const tmdbQuery = async function() {
     //  and then retrieve Movie Info
     var iTmdbId = 0;
     let sTmdbQuery = $("form").serialize();
-    let api_key = "5888233c985dfa60ed6be20d8e6726a1";
 
     // Query string to retrieve TMDB movie id
     let sQueryMovieIdUrl =
-      "https://api.themoviedb.org/3/search/movie?api_key=5888233c985dfa60ed6be20d8e6726a1&" +
+      "https://api.themoviedb.org/3/search/movie?api_key=" +
+      apiKey +
+      "&" +
       sTmdbQuery;
 
     // Ajax Query settings for movie id
@@ -43,7 +45,7 @@ const tmdbQuery = async function() {
         "https://api.themoviedb.org/3/movie/" +
         iTmdbId +
         "?api_key=" +
-        api_key +
+        apiKey +
         "&language=en-US&append_to_response=credits";
 
       let settingsAjax2 = {
@@ -58,7 +60,7 @@ const tmdbQuery = async function() {
 
       // Get movie info via the movie id with second AJAX call to the TMDB database
       let movieInfo = await $.ajax(settingsAjax2);
-      
+
       return movieInfo;
     } else {
       $oContainer.addClass("hidden");
