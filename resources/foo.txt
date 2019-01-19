@@ -1,1 +1,0 @@
-/* Can erase this file if not using the resources folder */
