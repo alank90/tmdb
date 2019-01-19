@@ -1,5 +1,5 @@
 // =========  /src/js/helper-functions/searchComplete.js ==================== //
-const apiKey = require("../../../config");
+const apiKey = require("../../../resources/config");
 
 /*  Taken from: https://stackoverflow.com/questions/21385892/how-to-use-source-function-and-ajax-in-jquery-ui-autocomplete
     This module uses the jquery ui widget autocomplete. Note that we have to use the source
