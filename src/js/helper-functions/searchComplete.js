@@ -1,4 +1,5 @@
 // =========  /src/js/helper-functions/searchComplete.js ==================== //
+const apiKey = require("../../../config");
 
 /*  Taken from: https://stackoverflow.com/questions/21385892/how-to-use-source-function-and-ajax-in-jquery-ui-autocomplete
     This module uses the jquery ui widget autocomplete. Note that we have to use the source
@@ -21,7 +22,7 @@ const searchComplete = function() {
     source: function(request, response) {
       // Consume TMDB API
       $.getJSON(
-        "https://api.themoviedb.org/3/search/movie?api_key=5888233c985dfa60ed6be20d8e6726a1",
+        "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey,
         { query: request.term },
         function(data) {
           // data contains JSON returned from AJAX call
