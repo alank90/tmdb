@@ -9,7 +9,7 @@ yarn-error.log*
 dist/
 
 # Config File
-config.js
+/config.js
 
 # Runtime data
 pids
