@@ -10,7 +10,7 @@ dist/
 
 # Config File
 /config.js
-/resources/config.js
+/src/resources/config.js
 
 # Runtime data
 pids

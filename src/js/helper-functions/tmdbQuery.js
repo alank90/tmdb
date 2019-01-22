@@ -1,5 +1,5 @@
 // =========  /src/js/helper-functions/tmdbQuery.js ============================ //
-const apiKey = require("../../../resources/config");
+const apiKey = require("../../resources/config");
 
 // ====================================================== //
 // ======= Let's Get Movie Info w/async/await =========== //

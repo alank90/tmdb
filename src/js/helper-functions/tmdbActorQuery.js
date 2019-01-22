@@ -1,5 +1,5 @@
 // =========  /src/js/helper-functions/tmdbActorQuery.js ============================ //
-const apiKey = require("../../../resources/config");
+const apiKey = require("../../resources/config");
 
 // ====================================================== //
 // ======= Let's Get ActorInfo w/async/await =========== //

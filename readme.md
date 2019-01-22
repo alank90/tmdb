@@ -1,5 +1,5 @@
 ### Important Notes
-You will need to include a config.js file in the /resources directory which contains:
+You will need to include a config.js file in the /src/resources directory which contains:
 
 // ======== config.js ============= //
 
