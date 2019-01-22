@@ -2,6 +2,7 @@ const fs = require("fs");
 const copydir = require("copy-dir");
 const { promisify } = require("util");
 const updateLinks = require("./updateLinks");
+const uglifyCSS = require("./uglifyCSS");
 const checkMark = "\u2714";
 const warning = "\u2757";
 
@@ -30,18 +31,13 @@ require("rimraf")("./dist", function() {
       /* jshint ignore:start */
       const uglifyJS = async function() {
         try {
-          console.log("main.css: build and uglify");
-          let uglified = require("uglifycss").processFiles(
-            ["src/css/main.css"],
-            {
-              maxLineLen: 500,
-              expandVars: true
-            }
-          );
-
-          await writeFile("dist/css/main.css", uglified);
+          const files = await readdir("./src/css");
+          files.forEach(function(file, index) {
+            let fileName = files[index];
+            uglifyCSS(fileName);
+          });
         } catch (err) {
-          console.log("ERROR:", err);
+          return console.log("ERROR:", err);
         }
         return `=== Uglified CSS file(s) Successfully!!! ======= ${checkMark}`;
       }; // end uglifyJS async function
@@ -176,7 +172,9 @@ require("rimraf")("./dist", function() {
             return `Alert! /resources only contains foo.txt. Directory not copied to /dist. ${warning}
             ======== End miscOperations. =========`;
           } else if (readDirectory.length > 0) {
-            console.log("/src/resources directory present. Copying to /dist...");
+            console.log(
+              "/src/resources directory present. Copying to /dist..."
+            );
             copydir("src/resources", "dist/resources", err => {
               if (err) {
                 throw console.log(`err ${warning}`);
