@@ -170,19 +170,19 @@ require("rimraf")("./dist", function() {
           await copyFile("CNAME", "dist/CNAME");
 
           // Copy /src/resources to /dist folder
-          const readDirectory = await readdir("./resources");
+          const readDirectory = await readdir("./src/resources");
 
           if (readDirectory[0] === "foo.txt" && readDirectory.length === 1) {
             return `Alert! /resources only contains foo.txt. Directory not copied to /dist. ${warning}
             ======== End miscOperations. =========`;
           } else if (readDirectory.length > 0) {
-            console.log("/resources directory present. Copying to /dist...");
-            copydir("resources", "dist/resources", err => {
+            console.log("/src/resources directory present. Copying to /dist...");
+            copydir("src/resources", "dist/resources", err => {
               if (err) {
                 throw console.log(`err ${warning}`);
               }
             });
-            return `Copied /resources to /dist directory successfully ${checkMark}
+            return `Copied /src/resources to /dist directory successfully ${checkMark}
            ====== End miscOperations. ======`;
           } else if (!readDirectory.length) {
             return `Alert. /resources directory empty ${warning}
