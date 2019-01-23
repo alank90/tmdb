@@ -21,7 +21,8 @@ const imageminJpegtran = require("imagemin-jpegtran");
 const imageminPngquant = require("imagemin-pngquant");
 const imageminGifSicle = require("imagemin-gifsicle");
 
-// ============= Using rimraf to clean up any existing build ============================== //
+// Using rimraf to clean up any existing build
+// and uglify & move css files to /dest ===== //
 require("rimraf")("./dist", function() {
   // and then start rebuilding everything from scratch
   mkdirp("./dist/css", function(err) {
@@ -31,15 +32,17 @@ require("rimraf")("./dist", function() {
       /* jshint ignore:start */
       const uglifyJS = async function() {
         try {
+          // Read Directory and send files to uglifyCSS for processing
           const files = await readdir("./src/css");
           files.forEach(function(file, index) {
             let fileName = files[index];
             uglifyCSS(fileName);
           });
+
+          return `=== Uglified CSS file(s) Successfully!!! ======= ${checkMark}`;
         } catch (err) {
           return console.log("ERROR:", err);
         }
-        return `=== Uglified CSS file(s) Successfully!!! ======= ${checkMark}`;
       }; // end uglifyJS async function
       /* jshint ignore:end */
 
@@ -72,7 +75,7 @@ require("rimraf")("./dist", function() {
 
       // ============== End Browserify Build ========================================//
 
-      // ================== compressImages ========================================= //
+      // ================== CompressImages ========================================= //
       /* jshint ignore:start */
       const compressImages = async function(result) {
         console.log(result);
@@ -86,7 +89,7 @@ require("rimraf")("./dist", function() {
               if (err) {
                 return err;
               } else {
-                imagemin(["src/img/*.{jpg,png,gif,svg}"], "dist/img", {
+                imagemin(["src/img/*.{bmp,jpg,jpeg,png,gif,svg}"], "dist/img", {
                   plugins: [
                     imageminJpegtran(),
                     imageminPngquant({ quality: "65-80" }),
@@ -161,9 +164,20 @@ require("rimraf")("./dist", function() {
       const miscOperations = async function(result) {
         console.log(result);
         try {
-          // Copy CNAME to /dist folder
-          await access("CNAME", fs.constants.R_OK | fs.constants.W_OK);
-          await copyFile("CNAME", "dist/CNAME");
+          // Copy CNAM,favicon.ico if present to /dist folder
+          if (fs.existsSync('src/CNAME')) {
+            await copyFile("src/CNAME", "dist/CNAME");
+            console.log(`Copied CNAME. ${checkMark}`);
+          } else {
+            console.log(`No CNAME present. ${warning}`);
+          }
+
+          if (fs.existsSync("src/favicon.ico")) {
+            await copyFile("src/favicon.ico", "dist/favicon.ico");
+            console.log(`Copied favicon.ico. ${checkMark}`);
+          } else {
+            console.log(`No favicon.ico present. ${warning}`);
+          }
 
           // Copy /src/resources to /dist folder
           const readDirectory = await readdir("./src/resources");

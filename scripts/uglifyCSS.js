@@ -1,24 +1,23 @@
 // ========= /scripts/uglifyCSS.js ============ //
 
-// Iterate thru css files in directory to uglify
+// =========== Dependencies =========== //
 const fs = require("fs");
-const readdir = promisify(fs.readdir);
+const { promisify } = require("util");
+
+const copyFile = promisify(fs.copyFile);
 const writeFile = promisify(fs.writeFile);
 
-// Lets read in files from /src/css and Uglify if not minified already
-
+// Lets take file passed from build.js and Uglify if not minified already
 /* jshint ignore:start */
-const uglifyFile = async function(file) {
+const uglifyFile = async function(fileName) {
   try {
     // Read, uglify, & copy /src/css to /dist/css folder
 
-    // Go thru and uglify each css file unless minified
-
-    let fileName = files[index];
-
+    // First, check if css file is minified
     if (fileName.includes(".min.")) {
       // Do Nothing. File is minified
       console.log(`${fileName}: Skipping. Already minified!`);
+      await copyFile(`src/css/${fileName}`, `dist/css/${fileName}`);
     } else {
       console.log(`${fileName}: build and uglify`);
       let uglified = require("uglifycss").processFiles(
