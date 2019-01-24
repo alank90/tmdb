@@ -5,6 +5,7 @@ const updateLinks = require("./updateLinks");
 const uglifyCSS = require("./uglifyCSS");
 const checkMark = "\u2714";
 const warning = "\u2757";
+const pauseHand = "\u270B";
 
 // Convert node fs methods w/callbacks to promises with .then
 const access = promisify(fs.access);
@@ -165,7 +166,7 @@ require("rimraf")("./dist", function() {
         console.log(result);
         try {
           // Copy CNAM,favicon.ico if present to /dist folder
-          if (fs.existsSync('src/CNAME')) {
+          if (fs.existsSync("src/CNAME")) {
             await copyFile("src/CNAME", "dist/CNAME");
             console.log(`Copied CNAME. ${checkMark}`);
           } else {
@@ -248,7 +249,7 @@ require("rimraf")("./dist", function() {
         })
         .then(result => {
           console.log(result);
-          console.log(`Pause for index.js to bundle and finish \u270B`);
+          console.log(`Pause for index.js to bundle and finish ${pauseHand}`);
           setTimeout(() => {
             // I know this is a kludge!!
             return UpdateFileLinks();
