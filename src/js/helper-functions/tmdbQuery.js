@@ -6,7 +6,7 @@ const apiKey = require("../../resources/config");
 // ====================================================== //
 /* jshint ignore:start */
 
-const tmdbQuery = async function() {
+const tmdbQuery = async function () {
   try {
     //  Begin the two AJAX calls needed to first retrieve Movie ID
     //  and then retrieve Movie Info
@@ -28,19 +28,20 @@ const tmdbQuery = async function() {
       url: sQueryMovieIdUrl,
       method: "GET",
       headers: {},
-      data: "{}"
+      data: "{}",
     };
 
     // Get the movie id first from TMDB database
     // This is because w/movie id, API returns more
     // info in the return object about the movie.
-    let movieQuery = await $.ajax(settingsAjax1);
+    let movieIdQuery = await $.ajax(settingsAjax1);
 
-    // Check if any results returned
-    if (movieQuery.total_results > 0) {
-      iTmdbId = movieQuery.results[0].id;
+    // Check if any results returned and assign movie Id
+    if (movieIdQuery.total_results > 0) {
+      iTmdbId = movieIdQuery.results[0].id;
+      // ======== End retrieve MovieId ===================== //
 
-      //Query string to retrieve Movie Info
+      //========== Query string to retrieve Movie Info ===== //
       let sQueryMovieInfoUrl =
         "https://api.themoviedb.org/3/movie/" +
         iTmdbId +
@@ -55,13 +56,13 @@ const tmdbQuery = async function() {
         url: sQueryMovieInfoUrl,
         method: "GET",
         headers: {},
-        data: "{}"
+        data: "{}",
       };
 
       // Get movie info via the movie id with second AJAX call to the TMDB database
-      let movieInfo = await $.ajax(settingsAjax2);
+      let movieInfoResults = await $.ajax(settingsAjax2);
 
-      return movieInfo;
+      return movieInfoResults;
     } else {
       $oContainer.addClass("hidden");
       $oError.removeClass("hidden");

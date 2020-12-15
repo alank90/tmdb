@@ -6,7 +6,7 @@ const getMovieInfo = require("./helper-functions/getMovieInfo");
 const displayBioInfo = require("./displayContent/displayBioInfo");
 const searchComplete = require("./helper-functions/searchComplete");
 
-$(document).ready(function() {
+$(document).ready(function () {
   // =====  Declare Method Variables ============= //
   var $oForm = $("form");
   var $oMovie_Data_Plot = $("#movie-data-plot");
@@ -22,7 +22,7 @@ $(document).ready(function() {
   $oClear.addClass("hidden");
 
   // ======== Initiate Autocomplete =========== //
-  $("#name").on("focus", function() {
+  $("#name").on("focus", function () {
     let radioChecked = false;
 
     radioChecked = $("input[value=movie]:checked").length > 0;
@@ -44,7 +44,7 @@ $(document).ready(function() {
   // ===================================================================== //
 
   /* jshint ignore:start */
-  $(".submit").on("click", async function(e) {
+  $(".submit").on("click", async function (e) {
     e.preventDefault();
     let radioValue = $("input[value='movie']:checked").val();
     if (radioValue) {
@@ -73,11 +73,13 @@ $(document).ready(function() {
   // =================================================================== //
 
   // Important! - Had to use event delegation here
-  $(".cast, .production").on("click", ".actor, .director-writer", function(
-    event
-  ) {
-    displayBioInfo(event);
-  });
+  $(".cast, .production").on(
+    "click",
+    ".actor, .director-writer",
+    function (event) {
+      displayBioInfo(event);
+    }
+  );
 
   // ================================================================== //
   // =========== End Event Handler Actor/Crew Bio ===================== //
@@ -86,7 +88,7 @@ $(document).ready(function() {
   // ================================================================ //
   // =========== Clear button event handler ========================= //
   // ================================================================ //
-  $("#clear").on("click", function(e) {
+  $("#clear").on("click", function (e) {
     e.preventDefault();
 
     function resetForm() {

@@ -7,7 +7,7 @@ $oError.addClass("hidden");
 
 // ==== Call TMDB API and get movie info ============== //
 /* jshint ignore:start */
-let displayPage = async function(
+let displayPage = async function (
   oMovieInfo,
   $oMovie_Data_Plot,
   $oMovie_Cast_Crew
@@ -39,13 +39,13 @@ let displayPage = async function(
   // Movie Overview
   $oMovie_Data_Plot
     .find(".title")
-    .html("<p class='title'>Movie Title:</p>" + oMovieInfo.title);
+    .html("<p class='title'>Movie Title:</p><p>" + oMovieInfo.title + "</p>");
   $oMovie_Data_Plot
     .find(".tagline")
-    .html("<p class='tagline'></p>" + oMovieInfo.tagline);
+    .html("<p class='tagline'></p><p>" + oMovieInfo.tagline + "</p>");
   $oMovie_Data_Plot
     .find(".plot")
-    .html("<p class='plot'>Movie Overview</p>" + oMovieInfo.overview);
+    .html("<p class='plot'>Movie Overview</p><p>" + oMovieInfo.overview + "</p>");
 
   // Cast Listing
   let aCastOfCharacters = oMovieInfo.credits.cast;
@@ -57,7 +57,7 @@ let displayPage = async function(
   // Crew listing
   let aCrew = oMovieInfo.credits.crew;
 
-  aCrew = aCrew.filter(el => {
+  aCrew = aCrew.filter((el) => {
     return (
       (el.department === "Directing" && el.job === "Director") ||
       (el.department === "Writing" && el.job === "Screenplay") ||
@@ -66,7 +66,7 @@ let displayPage = async function(
   });
 
   // Then print out
-  aCastOfCharacters.forEach(el => {
+  aCastOfCharacters.forEach((el) => {
     $oMovie_Cast_Crew
       .find(".cast")
       .append(
@@ -80,7 +80,7 @@ let displayPage = async function(
       );
   });
 
-  aCrew.forEach(el => {
+  aCrew.forEach((el) => {
     if ($(".crew:last > span:first").text() === el.job) {
       $oMovie_Cast_Crew
         .find(".production .crew:last")
@@ -109,7 +109,7 @@ let displayPage = async function(
   $oMovie_Cast_Crew
     .find(".release_date")
     .html(
-      "<p class='release_date'>Release Date:</p>" + oMovieInfo.release_date
+      "<p class='release_date'>Release Date:</p><p>" + oMovieInfo.release_date + "</p>"
     );
   oMovieInfo.revenue = oMovieInfo.revenue
     .toFixed(2)
@@ -124,7 +124,7 @@ let displayPage = async function(
   if (oMovieInfo.homepage) {
     $oMovie_Cast_Crew.find(".movie_url").attr({
       href: oMovieInfo.homepage,
-      target: "_blank"
+      target: "_blank",
     });
   } else {
     $oMovie_Cast_Crew

@@ -4,146 +4,119 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!-- [if gt IE 8]><! -->
 <html class="no-js" lang="">
-  <!-- <![endif] -->
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>TMDB</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!-- <![endif] -->
 
-    <!-- CSS Style Sheets  & Fonts -->
-    <!--
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>TMDB</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- CSS Style Sheets  & Fonts -->
+  <!--
       Use the following CSS rules to specify these families:
       font-family: 'Quattrocento Sans', sans-serif;
       font-family: 'Playfair Display SC', serif;
       font-family: 'Buda', cursive;
     -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Buda:300|Playfair+Display+SC|Quattrocento+Sans"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./src/css/normalize.min.css" />
-    <link
-      rel="stylesheet"
-      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
-    <link rel="stylesheet" href="./src/css/main.css" />
-  </head>
+  <link href="https://fonts.googleapis.com/css?family=Buda:300|Playfair+Display+SC|Quattrocento+Sans"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="./src/css/normalize.min.css" />
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="./src/css/main.css" />
+</head>
 
-  <body>
-    <!--[if lt IE 8]>
+<body>
+  <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
         <a href="http://browsehappy.com/">upgrade your browser</a> to improve
         your experience.
       </p>
     <![endif]-->
-    <div class="page-wrap">
-      <header>
-        <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
-        <h1>Movie Scoop</h1>
-        <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
 
-        <h2>Here you can lookup facts about your favorite movies</h2>
-      </header>
-      <main>
-        <form>
-          <fieldset>
-            <legend>Search Movie Database</legend>
-            <hr />
-            <div class="searchBoxes">
-              <label for="t">Movie Title:</label>
-              <input
-                id="name"
-                name="query"
-                type="text"
-                placeholder="Search"
-                required
-              />
-              <!-- name is 'query' to match api for the title in a query. -->
-            </div>
-            <div class="searchBoxes">
-              <label for="y">Year:</label>
-              <input
-                id="year"
-                name="year"
-                type="number"
-                min="1910"
-                max="2019"
-                placeholder="Year"
-              />
-            </div>
+  <div class="content">
+    <header>
+      <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
+      <h1>Movie Scoop</h1>
+      <img src="./src/img/movie-icon2.png" alt="Movie Logo" />
 
-            <span id="radioButton"
-              >Query Type&nbsp<em>(</em>Movie or Series<em>)</em>:</span
-            >
-            <span class="radioLabel">Movie</span
-            ><input
-              type="radio"
-              name="type"
-              value="movie"
-              checked="checked"
-              id="r1"
-            />
-            <span class="radioLabel">Series</span
-            ><input type="radio" name="type" value="series" id="r2" />
-          </fieldset>
-        </form>
+      <h2>Here you can lookup facts about your favorite movies</h2>
+    </header>
+    <main>
+      <form>
+        <fieldset>
+          <legend>Search Movie Database</legend>
+          <hr />
+          <div class="searchBoxes">
+            <label for="t">Movie Title:</label>
+            <input id="name" name="query" type="text" placeholder="Search" required />
+            <!-- name is 'query' to match api for the title in a query. -->
+          </div>
+          <div class="searchBoxes">
+            <label for="y">Year:</label>
+            <input id="year" name="year" type="number" min="1910" max="2019" placeholder="Year" />
+          </div>
 
-        <button class="submit">Send Request</button>
+          <span id="radioButton">Query Type&nbsp<em>(</em>Movie or Series<em>)</em>:</span>
+          <span class="radioLabel">Movie</span><input type="radio" name="type" value="movie" checked="checked"
+            id="r1" />
+          <span class="radioLabel">Series</span><input type="radio" name="type" value="series" id="r2" />
+        </fieldset>
+      </form>
 
-        <!-- ==== Here go Results from TMDB query ===== -->
-        <p id="poster"></p>
-        <!-- Poster floated right. Cant be in the flex box container. -->
-        <div id="movie-data-plot">
-          <h3 class="title"></h3>
-          <p class="tagline"></p>
-          <br />
-          <p class="plot"></p>
-        </div>
+      <button class="submit">Send Request</button>
 
-        <div id="movie-cast-crew">
-          <ul class="cast">
-            Cast
-          </ul>
+      <!-- ==== Here go Results from TMDB query ===== -->
+      <p id="poster"></p>
+      <!-- Poster floated right. Cant be in the flex box container. -->
+      <div id="movie-data-plot">
+        <h3 class="title"></h3>
+        <p class="tagline"></p>
+        <br />
+        <p class="plot"></p>
+      </div>
 
-          <ul class="production">
-            Crew
-          </ul>
+      <div id="movie-cast-crew">
+        <ul class="cast">
+          Cast
+        </ul>
 
-          <p class="release_date"></p>
-          <p class="revenue"></p>
-          <p class="runtime"></p>
-          <p class="movie_url"><a class="movie_url">Movie Home Page</a></p>
+        <ul class="production">
+          Crew
+        </ul>
 
-          <p class="error_message"></p>
-          <a href="#"><button id="clear">Clear</button></a>
-        </div>
-      </main>
-    </div>
-    <!-- end .page-wrap -->
-    <footer class="site-footer">
-      <p class="tmdbNotice">
-        <img class="tmdbLogo" src="./src/img/tmdb_logo.png" alt="TMDb Logo" />
-        "This product uses the TMDb API but is not endorsed or certified by
-        TMDb."
-      </p>
-    </footer>
+        <p class="release_date"></p>
+        <p class="revenue"></p>
+        <p class="runtime"></p>
+        <p class="movie_url"><a class="movie_url">Movie Home Page</a></p>
 
-    <!-- ===================================================================== -->
-    <!-- =========== Javascript Below This Line ============================== -->
-    <!-- ===================================================================== -->
-    <!-- jQuery CDN -->
-    <script
-      src="http://code.jquery.com/jquery-2.2.4.min.js"
-      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <p class="error_message"></p>
+        <a href="#"><button id="clear">Clear</button></a>
+      </div>
+    </main>
+  </div>
 
-    <script src="./index.js"></script>
-  </body>
+  <footer class="site-footer">
+    <p class="tmdbNotice">
+      <img class="tmdbLogo" src="./src/img/tmdb_logo.png" alt="TMDb Logo" />
+      "This product uses the TMDb API but is not endorsed or certified by
+      TMDb."
+    </p>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- =========== Javascript Below This Line ============================== -->
+  <!-- ===================================================================== -->
+  <!-- jQuery CDN -->
+  <script src="http://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="./index.js"></script>
+</body>
+
 </html>

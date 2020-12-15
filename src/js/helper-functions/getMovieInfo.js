@@ -4,7 +4,7 @@ const tmdbQuery = require("./tmdbQuery");
 
 /* jshint ignore:start */
 
-let getMovieInfo = async function() {
+let getMovieInfo = async function () {
   let movieInfo = await tmdbQuery();
   return movieInfo;
 };
