@@ -4,14 +4,14 @@ const tmdbQuery = require("./tmdbQuery");
 
 /* jshint ignore:start */
 
-let getMovieInfo = async function () {
-  let searchType = "movie";
-  let movieInfo = await tmdbQuery(searchType);
-  return movieInfo;
+let getTvInfo = async function () {
+  let searchType = "tv";
+  let tvInfo = await tmdbQuery(searchType);
+  return tvInfo;
 };
 /* jshint ignore:end */
 // =========================================================================== //
 // ============== End of displayMoviePage function =========================== //
 // =========================================================================== //
 
-module.exports = getMovieInfo;
+module.exports = getTvInfo;

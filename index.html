@@ -52,7 +52,7 @@
           <legend>Search Movie Database</legend>
           <hr />
           <div class="searchBoxes">
-            <label for="t">Movie Title:</label>
+            <label for="t">Movie/TV Title:</label>
             <input id="name" name="query" type="text" placeholder="Search" required />
             <!-- name is 'query' to match api for the title in a query. -->
           </div>
@@ -64,7 +64,7 @@
           <span id="radioButton">Query Type&nbsp<em>(</em>Movie or Series<em>)</em>:</span>
           <span class="radioLabel">Movie</span><input type="radio" name="type" value="movie" checked="checked"
             id="r1" />
-          <span class="radioLabel">Series</span><input type="radio" name="type" value="series" id="r2" />
+          <span class="radioLabel">Series</span><input type="radio" name="type" value="tv" id="r2" />
         </fieldset>
       </form>
 
@@ -73,6 +73,7 @@
       <!-- ==== Here go Results from TMDB query ===== -->
       <p id="poster"></p>
       <!-- Poster floated right. Cant be in the flex box container. -->
+      <!-- ============ Markup for Movie Results Here ========================= -->
       <div id="movie-data-plot">
         <h3 class="title"></h3>
         <p class="tagline"></p>
@@ -93,6 +94,17 @@
         <p class="revenue"></p>
         <p class="runtime"></p>
         <p class="movie_url"><a class="movie_url">Movie Home Page</a></p>
+        <!-- ============ End Markup for Movie Results Here ========================= -->
+
+        <!-- ============= Begin TV Info Markup Here ================================ -->
+        <div id="tv-data-overview">
+          <h3 class="title"></h3>
+          <p class="tagline"></p>
+          <br />
+          <p class="overview"></p>
+        </div>
+
+        <!-- ============= End TV Info Markup Here ================================== -->
 
         <p class="error_message"></p>
         <a href="#"><button id="clear">Clear</button></a>

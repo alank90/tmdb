@@ -5,20 +5,29 @@ const displayMoviePage = require("./displayContent/displayMoviePage");
 const getMovieInfo = require("./helper-functions/getMovieInfo");
 const displayBioInfo = require("./displayContent/displayBioInfo");
 const searchComplete = require("./helper-functions/searchComplete");
+const displayTvPage = require("./displayContent/displayTvPage");
+const getTvInfo = require("./helper-functions/getTvInfo");
 
 $(document).ready(function () {
   // =====  Declare Method Variables ============= //
-  var $oForm = $("form");
-  var $oMovie_Data_Plot = $("#movie-data-plot");
-  var $oMovie_Cast_Crew = $("#movie-cast-crew");
-  var oMovieInfo = {};
-  var $oPoster = $("#poster");
-  var $oClear = $("#clear");
+  let $oForm = $("form");
+  let $oMovie_Data_Plot = $("#movie-data-plot");
+  let $oMovie_Cast_Crew = $("#movie-cast-crew");
+  let oMovieInfo = {};
+
+  let oTvInfo = {};
+  let $oTv_Data_Plot = $("#tv-data-plot");
+  let $oTv_Cast_Crew = $("#tv-cast-crew");
+  let $oPoster = $("#poster");
+  let $oClear = $("#clear");
 
   // ===== End Variable Declarations =========== //
 
+  // ===== Hide info area initially ======= //
   $oMovie_Data_Plot.addClass("hidden");
   $oMovie_Cast_Crew.addClass("hidden");
+  $oTv_Data_Plot.addClass("hidden");
+  $oTv_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
 
   // ======== Initiate Autocomplete =========== //
@@ -27,15 +36,22 @@ $(document).ready(function () {
 
     radioChecked = $("input[value=movie]:checked").length > 0;
     if (radioChecked) {
+      const buttonSelected = "movie";
       $("#name").autocomplete(); // instantiate autocomplete if necesssary
       let disabled = $("#name").autocomplete("option", "disabled");
       if (disabled) {
         $("#name").autocomplete("option", "disabled", false);
       }
-      searchComplete();
+      searchComplete(buttonSelected);
     } else {
+      // Series was selected
+      const buttonSelected = "tv";
       $("#name").autocomplete();
-      $("#name").autocomplete("disable");
+      let disabled = $("#name").autocomplete("option", "disabled");
+      if (disabled) {
+        $("#name").autocomplete("option", "disabled", false);
+      }
+      searchComplete(buttonSelected);
     }
   });
 
@@ -60,7 +76,19 @@ $(document).ready(function () {
       $oMovie_Cast_Crew.removeClass("hidden");
       $oClear.removeClass("hidden"); // Show the clear button
     } else {
-      alert("TV series lookup coming soon!");
+      oTvInfo = await getTvInfo();
+      $("#poster").html(
+        '<center><img src="./src/img/loading.gif" alt="loading..."></center>'
+      ); //gif while poster loads.
+
+      displayTvPage(oTvInfo, $oTv_Data_Plot, $oTv_Cast_Crew);
+
+      $oTv_Data_Plot.removeClass("hidden"); // Make Results Container Visible
+      $oTv_Cast_Crew.removeClass("hidden");
+      $oClear.removeClass("hidden"); // Show the clear button
+
+      console.log("Tv Info %s", oTvInfo);
+      console.log("TV series lookup coming soon!");
     }
   });
   /* jshint ignore:end */

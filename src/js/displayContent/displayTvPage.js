@@ -1,17 +1,13 @@
-// ===== /src/js/helper-functions/displayMoviePage.js ======== //
+// ===== /src/js/helper-functions/displayTVPage.js ======== //
 
 // ============ Variable Declarations ========== //
 let $oError = $(".error_message");
 
-// ==== Call TMDB API and get movie info ============== //
+// ==== Call TMDB API and get TV info ============== //
 /* jshint ignore:start */
-let displayPage = async function (
-  oMovieInfo,
-  $oMovie_Data_Plot,
-  $oMovie_Cast_Crew
-) {
-  // Now we can paint the page w/oMovieInfo object
-  // First Lets check state of the Movie Info .movie container
+let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
+  // Now we can paint the page w/oTvInfo object
+  // First Lets check state of the TV Info .tv container
   if ($oError.not(".hidden")) {
     $oError.addClass("hidden");
   }
@@ -21,39 +17,36 @@ let displayPage = async function (
     $(".crew").remove();
   }
 
-  // ========= Let's retrieve the Movie poster image ============= //
-  let sMoviePoster =
-    "https://image.tmdb.org/t/p/w342/" + oMovieInfo.poster_path;
-  $("#poster").html(
-    "<img src='" + sMoviePoster + "' alt='No Poster Available'>"
-  );
+  // ========= Let's retrieve the TV poster image ============= //
+  let sTvPoster = "https://image.tmdb.org/t/p/w342/" + oTvInfo.poster_path;
+  $("#poster").html("<img src='" + sTvPoster + "' alt='No Poster Available'>");
   if ($("#poster").hasClass("hidden")) {
     $("#poster").removeClass("hidden");
   }
-  // ========== end retrieve Movie Poster Image ================ //
+  // ========== end retrieve TV Poster Image ================ //
 
-  // Let's fill in the page with oMovieInfo object retrieved from TMDB
+  // Let's fill in the page with oTvInfo object retrieved from TMDB
 
-  // Movie Overview
-  $oMovie_Data_Plot
+  // Tv Overview
+  $oTv_Data_Overview
     .find(".title")
-    .html("<p class='title'>Movie Title:</p><p>" + oMovieInfo.title + "</p>");
-  $oMovie_Data_Plot
+    .html("<p class='title'>Tv Name:</p><p>" + oTvInfo.name + "</p>");
+  $oTv_Data_Overview
     .find(".tagline")
-    .html("<p class='tagline'></p><p>" + oMovieInfo.tagline + "</p>");
-  $oMovie_Data_Plot
-    .find(".plot")
-    .html("<p class='plot'>Movie Overview</p><p>" + oMovieInfo.overview + "</p>");
-
+    .html("<p class='tagline'></p><p>" + oTvInfo.tagline + "</p>");
+  $oTv_Data_Overview
+    .find(".overview")
+    .html("<p class='overview'>TV Overview</p><p>" + oTvInfo.overview + "</p>");
+  /*
   // Cast Listing
-  let aCastOfCharacters = oMovieInfo.credits.cast;
+  let aCastOfCharacters = oTvInfo.credits.cast;
   // filter first 10 cast entries
   aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
     return index <= 10;
   });
 
   // Crew listing
-  let aCrew = oMovieInfo.credits.crew;
+  let aCrew = oTvInfo.credits.crew;
 
   aCrew = aCrew.filter((el) => {
     return (
@@ -65,7 +58,7 @@ let displayPage = async function (
 
   // Then print out
   aCastOfCharacters.forEach((el) => {
-    $oMovie_Cast_Crew
+    $oTv_Cast_Crew
       .find(".cast")
       .append(
         "<li class='character'> <span>" +
@@ -80,7 +73,7 @@ let displayPage = async function (
 
   aCrew.forEach((el) => {
     if ($(".crew:last > span:first").text() === el.job) {
-      $oMovie_Cast_Crew
+      $oTv_Cast_Crew
         .find(".production .crew:last")
         .append(
           "<span class='director-writer' title='Click To See Their Biography' data-crew-index=" +
@@ -90,7 +83,7 @@ let displayPage = async function (
             "</span>"
         );
     } else {
-      $oMovie_Cast_Crew
+      $oTv_Cast_Crew
         .find(".production")
         .append(
           "<li class='crew'><span>" +
@@ -104,36 +97,36 @@ let displayPage = async function (
     }
   });
 
-  $oMovie_Cast_Crew
+  $oTv_Cast_Crew
     .find(".release_date")
     .html(
-      "<p class='release_date'>Release Date:</p><p>" + oMovieInfo.release_date + "</p>"
+      "<p class='release_date'>Release Date:</p><p>" + oTvInfo.release_date + "</p>"
     );
-  oMovieInfo.revenue = oMovieInfo.revenue
+  oTvInfo.revenue = oTvInfo.revenue
     .toFixed(2)
     .replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); //Convert to Dollars
-  $oMovie_Cast_Crew
+  $oTv_Cast_Crew
     .find(".revenue")
-    .html("<p class='revenue'>Movie Revenues:</p>" + "$" + oMovieInfo.revenue);
-  $oMovie_Cast_Crew
+    .html("<p class='revenue'>Tv Revenues:</p>" + "$" + oTvInfo.revenue);
+  $oTv_Cast_Crew
     .find(".runtime")
-    .html("<p class='runtime'>Runtime:</p>" + oMovieInfo.runtime + " Minutes");
-  // Check if there is a Movie Page URL
-  if (oMovieInfo.homepage) {
-    $oMovie_Cast_Crew.find(".movie_url").attr({
-      href: oMovieInfo.homepage,
+    .html("<p class='runtime'>Runtime:</p>" + oTvInfo.runtime + " Minutes");
+  // Check if there is a Tv Page URL
+  if (oTvInfo.homepage) {
+    $oTv_Cast_Crew.find(".Tv_url").attr({
+      href: oTvInfo.homepage,
       target: "_blank",
     });
   } else {
-    $oMovie_Cast_Crew
-      .find("p .movie_url ")
-      .text("Movie Page Not Available")
+    $oTv_Cast_Crew
+      .find("p .Tv_url ")
+      .text("Tv Page Not Available")
       .attr("href", "");
-  }
+  }*/
 };
 /* jshint ignore:end */
 // =========================================================================== //
-// ============== End of displayMoviePage function =========================== //
+// ============== End of displayTvPage function =========================== //
 // =========================================================================== //
 
 module.exports = displayPage;

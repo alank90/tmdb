@@ -2,77 +2,67 @@
 const apiKey = require("../../resources/config");
 
 // ====================================================== //
-// ======= Let's Get Movie Info w/async/await =========== //
+// ======= Let's Get Movie/TV Info w/async/await =========== //
 // ====================================================== //
 /* jshint ignore:start */
 
-const tmdbQuery = async function () {
+const tmdbQuery = async function (searchType) {
   try {
-    //  Begin the two AJAX calls needed to first retrieve Movie ID
-    //  and then retrieve Movie Info
-    var iTmdbId = 0;
+    //  Begin the two AJAX calls needed to first retrieve ID
+    //  and then retrieve Movie/TV Info
+    let iTmdbId = 0;
     let sTmdbQuery = $("form").serialize();
 
-    // Query string to retrieve TMDB movie id
-    let sQueryMovieIdUrl =
-      "https://api.themoviedb.org/3/search/movie?api_key=" +
-      apiKey +
-      "&" +
-      sTmdbQuery;
+    // Query string to retrieve TMDB movie/tv id
+    let sQueryUrl = `https://api.themoviedb.org/3/search/${searchType}?api_key=${apiKey}&${sTmdbQuery}`;
 
-    // Ajax Query settings for movie id
+    // Ajax Query settings for movie/tv id
     let settingsAjax1 = {
       dataType: "json",
       async: true,
       crossDomain: true,
-      url: sQueryMovieIdUrl,
+      url: sQueryUrl,
       method: "GET",
       headers: {},
       data: "{}",
     };
 
-    // Get the movie id first from TMDB database
-    // This is because w/movie id, API returns more
-    // info in the return object about the movie.
-    let movieIdQuery = await $.ajax(settingsAjax1);
+    // Get the id first from TMDB database
+    // This is because w/id, API returns more
+    // info in the return object about the movie/tv.
+    let idQuery = await $.ajax(settingsAjax1);
+    // Check if any results returned and assign movie/tv Id
+    if (idQuery.total_results > 0) {
+      iTmdbId = idQuery.results[0].id;
+      // ======== End retrieve Id ===================== //
 
-    // Check if any results returned and assign movie Id
-    if (movieIdQuery.total_results > 0) {
-      iTmdbId = movieIdQuery.results[0].id;
-      // ======== End retrieve MovieId ===================== //
-
-      //========== Query string to retrieve Movie Info ===== //
-      let sQueryMovieInfoUrl =
-        "https://api.themoviedb.org/3/movie/" +
-        iTmdbId +
-        "?api_key=" +
-        apiKey +
-        "&language=en-US&append_to_response=credits";
+      //========== Query string to retrieve Movie/TV Info ===== //
+      let sQueryInfoUrl = `https://api.themoviedb.org/3/${searchType}/${iTmdbId}?api_key=${apiKey}&language=en-US&append_to_response=credits`;
 
       let settingsAjax2 = {
         dataType: "json",
         async: true,
         crossDomain: true,
-        url: sQueryMovieInfoUrl,
+        url: sQueryInfoUrl,
         method: "GET",
         headers: {},
         data: "{}",
       };
 
-      // Get movie info via the movie id with second AJAX call to the TMDB database
-      let movieInfoResults = await $.ajax(settingsAjax2);
+      // Get searchType info via the movie/tv id with second AJAX call to the TMDB database
+      let infoResults = await $.ajax(settingsAjax2);
 
-      return movieInfoResults;
+      return infoResults;
     } else {
       $oContainer.addClass("hidden");
       $oError.removeClass("hidden");
       $oError.html(
-        "<p class='title'>No Movie Found. Try Alternate Spelling or check the Release Date if you entered one...</p>"
+        "<p class='title'>No MovieTV Info Found. Try Alternate Spelling or check the Release Date if you entered one...</p>"
       );
     } // end if/else
   } catch (e) {
     console.log(e);
-    $("#poster").html("<h3>Error retrieving movie info</h3>");
+    $("#poster").html("<h3>Error retrieving movie/tv info</h3>");
   }
 };
 
