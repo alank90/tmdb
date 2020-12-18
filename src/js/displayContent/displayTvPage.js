@@ -2,6 +2,7 @@
 
 // ============ Variable Declarations ========== //
 let $oError = $(".error_message");
+let creators = "";
 
 // ==== Call TMDB API and get TV info ============== //
 /* jshint ignore:start */
@@ -30,13 +31,47 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
   // Tv Overview
   $oTv_Data_Overview
     .find(".title")
-    .html("<p class='title'>Tv Name:</p><p>" + oTvInfo.name + "</p>");
+    .html("<p class='title'>TV Series:</p><p>" + oTvInfo.name + "</p>");
   $oTv_Data_Overview
     .find(".tagline")
     .html("<p class='tagline'></p><p>" + oTvInfo.tagline + "</p>");
   $oTv_Data_Overview
     .find(".overview")
     .html("<p class='overview'>TV Overview</p><p>" + oTvInfo.overview + "</p>");
+  
+  // Create a string of Creators
+  oTvInfo.created_by.forEach((creator) => {
+    creators += ` ${creator.name}`;
+  });
+  $oTv_Data_Overview
+    .find(".createdBy")
+    .html(
+      "<p class='createdBy'>Series Creator(s)</p><p class='createdBy'>" +
+        creators +
+        "</p>"
+    );
+
+  $oTv_Data_Overview
+    .find(".firstAirDate")
+    .html(
+      "<p class='firstAirDate'>Premiered</p><p>" +
+        oTvInfo.first_air_date +
+        "</p>"
+    );
+  $oTv_Data_Overview
+    .find(".lastAirDate")
+    .html(
+      "<p class='lastAirDate'>Last Air Date</p><p>" +
+        oTvInfo.last_episode_to_air.air_date +
+        "</p>" +
+        "<p class='lastAirDate'>Last Episode:" +
+        oTvInfo.last_episode_to_air.name +
+        "</p>" +
+        "<p class='.lastairdate'>" +
+        oTvInfo.last_episode_to_air.overview +
+        "</p>"
+    );
+
   /*
   // Cast Listing
   let aCastOfCharacters = oTvInfo.credits.cast;

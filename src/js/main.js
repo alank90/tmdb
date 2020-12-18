@@ -9,14 +9,14 @@ const displayTvPage = require("./displayContent/displayTvPage");
 const getTvInfo = require("./helper-functions/getTvInfo");
 
 $(document).ready(function () {
-  // =====  Declare Method Variables ============= //
+  // =====  Declare/Initialize Variables ============= //
   let $oForm = $("form");
   let $oMovie_Data_Plot = $("#movie-data-plot");
   let $oMovie_Cast_Crew = $("#movie-cast-crew");
   let oMovieInfo = {};
 
   let oTvInfo = {};
-  let $oTv_Data_Plot = $("#tv-data-plot");
+  let $oTv_Data_Overview = $("#tv-data-overview");
   let $oTv_Cast_Crew = $("#tv-cast-crew");
   let $oPoster = $("#poster");
   let $oClear = $("#clear");
@@ -26,7 +26,7 @@ $(document).ready(function () {
   // ===== Hide info area initially ======= //
   $oMovie_Data_Plot.addClass("hidden");
   $oMovie_Cast_Crew.addClass("hidden");
-  $oTv_Data_Plot.addClass("hidden");
+  $oTv_Data_Overview.addClass("hidden");
   $oTv_Cast_Crew.addClass("hidden");
   $oClear.addClass("hidden");
 
@@ -81,13 +81,12 @@ $(document).ready(function () {
         '<center><img src="./src/img/loading.gif" alt="loading..."></center>'
       ); //gif while poster loads.
 
-      displayTvPage(oTvInfo, $oTv_Data_Plot, $oTv_Cast_Crew);
+      displayTvPage(oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew);
 
-      $oTv_Data_Plot.removeClass("hidden"); // Make Results Container Visible
+      $oTv_Data_Overview.removeClass("hidden"); // Make Results Container Visible
       $oTv_Cast_Crew.removeClass("hidden");
       $oClear.removeClass("hidden"); // Show the clear button
 
-      console.log("Tv Info %s", oTvInfo);
       console.log("TV series lookup coming soon!");
     }
   });
