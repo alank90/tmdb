@@ -254,7 +254,7 @@ a[href="null"] {
 .revenue,
 .release_date,
 .createdBy,
-.firstAirDate {
+.firstAirDate{
   align-self: center;
   color: #c5c0c3;
   font-size: 2.2rem;
@@ -608,7 +608,7 @@ input[type="radio"] {
   .director-writer {
     font-size: 2rem;
   }
-  a.movie_url {
+  a.movie_url, a.tv_url {
     font-size: 2.2rem;
   }
 

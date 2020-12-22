@@ -121,10 +121,12 @@ $(document).ready(function () {
     function resetForm() {
       $oForm.find("input:not[value='movie']").val("");
     }
-
+    // Hide all pertinent elements
     $oMovie_Data_Plot.addClass("hidden");
     $oPoster.addClass("hidden");
     $oMovie_Cast_Crew.addClass("hidden");
+    $oTv_Data_Overview.addClass("hidden");
+    $oTv_Cast_Crew.addClass("hidden");
     $oClear.addClass("hidden");
     $(".character").remove();
     $(".crew").remove();

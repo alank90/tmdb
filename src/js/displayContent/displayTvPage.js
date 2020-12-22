@@ -31,33 +31,55 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
   // Tv Overview
   $oTv_Data_Overview
     .find(".title")
-    .html("<p class='title'>TV Series:</p><p>" + oTvInfo.name + "</p>");
+    .html("<p>TV Series:</p><p>" + oTvInfo.name + "</p>");
   $oTv_Data_Overview
     .find(".tagline")
-    .html("<p class='tagline'></p><p>" + oTvInfo.tagline + "</p>");
+    .html("<p></p><p>" + oTvInfo.tagline + "</p>");
   $oTv_Data_Overview
     .find(".overview")
-    .html("<p class='overview'>TV Overview</p><p>" + oTvInfo.overview + "</p>");
-  
+    .html("<p>TV Overview</p><p>" + oTvInfo.overview + "</p>");
+
   // Create a string of Creators
+  // Check array has previous results and clear
   oTvInfo.created_by.forEach((creator) => {
     creators += ` ${creator.name}`;
   });
   $oTv_Data_Overview
     .find(".createdBy")
-    .html(
-      "<p class='createdBy'>Series Creator(s)</p><p class='createdBy'>" +
-        creators +
-        "</p>"
-    );
+    .html(`<p>Series Creator(s)</p><p>${creators}</p>`);
+
+  $oTv_Data_Overview.find(".network").html(
+    `<ul>
+      <li>Series Network/Service<span>${oTvInfo.networks[0].name}</span></li>
+      <li>Number of Episodes<span>${oTvInfo.number_of_episodes}</span></li>
+      <li>Seasons<span>${oTvInfo.number_of_seasons}</span></li>
+    </ul>`
+  );
 
   $oTv_Data_Overview
     .find(".firstAirDate")
-    .html(
-      "<p class='firstAirDate'>Premiered</p><p>" +
-        oTvInfo.first_air_date +
-        "</p>"
-    );
+    .html(`<p>Premiered</p><p>${oTvInfo.first_air_date}</p>`);
+
+  if (oTvInfo.next_episode_to_air) {
+    $oTv_Data_Overview
+      .find(".nextAirDate")
+      .html(
+        "<p>Next Air Date</p><p>" +
+          oTvInfo.next_episode_to_air.air_date +
+          "</p>" +
+          "<p>Next Episode:" +
+          oTvInfo.next_episode_to_air.name +
+          "</p>" +
+          "<p>" +
+          oTvInfo.next_episode_to_air.overview +
+          "</p>"
+      );
+  } else {
+    $oTv_Data_Overview
+      .find("p.nextAirDate")
+      .text("Series Not Currently Airing New Episodes");
+  }
+
   $oTv_Data_Overview
     .find(".lastAirDate")
     .html(
@@ -71,6 +93,20 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
         oTvInfo.last_episode_to_air.overview +
         "</p>"
     );
+
+  // TV Cast & Crew
+  // Check if there is a TV Page URL
+  if (oTvInfo.homepage) {
+    $oTv_Cast_Crew.find(".tv_url").attr({
+      href: oTvInfo.homepage,
+      target: "_blank",
+    });
+  } else {
+    $oTv_Cast_Crew
+      .find("p > .tv_url ")
+      .text("No Series Homepage Available")
+      .attr("href", "");
+  }
 
   /*
   // Cast Listing
@@ -146,18 +182,7 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
   $oTv_Cast_Crew
     .find(".runtime")
     .html("<p class='runtime'>Runtime:</p>" + oTvInfo.runtime + " Minutes");
-  // Check if there is a Tv Page URL
-  if (oTvInfo.homepage) {
-    $oTv_Cast_Crew.find(".Tv_url").attr({
-      href: oTvInfo.homepage,
-      target: "_blank",
-    });
-  } else {
-    $oTv_Cast_Crew
-      .find("p .Tv_url ")
-      .text("Tv Page Not Available")
-      .attr("href", "");
-  }*/
+  */
 };
 /* jshint ignore:end */
 // =========================================================================== //
