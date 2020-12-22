@@ -167,7 +167,7 @@ img.bio-pic {
 }
 
 h2 {
-  color: #c5c0c3;
+  color: #333333;
   font-family: "Playfair Display SC", serif;
   font-size: 3vw;
   font-weight: 500;
@@ -199,16 +199,16 @@ h2 {
 
 p,
 span {
-  color: #c5c0c3;
+  color: #000;
   margin-bottom: 1.5vh;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
 }
 
 p,
 ul {
-  color: #c5c0c3;
+  color: #000;
   font-family: "Buda", cursive;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 500;
   margin-top: 2rem;
   text-align: center;
@@ -216,7 +216,7 @@ ul {
 }
 
 .title {
-  color: #c5c0c3;
+  color: #333333;
   font-family: "Buda", cursive;
   font-size: 3.5rem;
   font-weight: 700;
@@ -226,11 +226,11 @@ ul {
 }
 
 .tagline {
-  color: #86827475;
+  color: #333;
   font-family: "Buda", cursive;
   font-size: 2.5rem;
   font-weight: 600;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   text-align: center;
   text-shadow: 2px 3px 1spx rgba(243, 238, 238, 0.6);
 }
@@ -238,6 +238,32 @@ ul {
 a {
   color: darkslategrey;
   font-size: 3rem;
+}
+a.tv_url {
+  position:relative;
+  text-align: center;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+a.tv_url:hover {
+  color: #333;
+}
+a.tv_url:before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 2px;
+  bottom: 0;
+  left: 25%;
+  background-color: #000;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+a.tv_url:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
 }
 
 a[href="null"] {
@@ -254,7 +280,7 @@ a[href="null"] {
 .revenue,
 .release_date,
 .createdBy,
-.firstAirDate{
+.firstAirDate {
   align-self: center;
   color: #c5c0c3;
   font-size: 2.2rem;
@@ -285,7 +311,29 @@ ul {
 }
 
 .actor {
+  position: relative;
+  color: #000;
+  text-decoration: none;
   cursor: pointer;
+}
+.actor:hover {
+  color: #333;
+}
+.actor:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+.actor:hover::before {
+  visibility: visible;
+  transform: scaleX(1);
 }
 
 .production {
@@ -293,7 +341,7 @@ ul {
 }
 
 p.bio {
-  font-size: 1.4rem;
+  font-size: 2rem;
   margin: 5px;
   transition: all 0.6s ease-in-out 1.5s;
 }
@@ -325,6 +373,11 @@ li:not(.crew) span {
 img[src="N/A"] {
   border: 2px solid black;
 }
+li > img {
+  width: 100px;
+  height: auto;
+  margin-left: 15px;
+}
 
 .error_message {
   background: rgba(255, 255, 255, 0.4);
@@ -343,7 +396,7 @@ fieldset {
 }
 
 legend {
-  color: #c5c0c3;
+  color: #333333;
   font-family: "Playfair Display SC", serif;
   font-size: 2.5rem;
   font-weight: 700;
@@ -403,12 +456,12 @@ input[id="r1"],
 }
 
 input::-moz-selection {
-  background: rgba(224, 166, 6, 0.733);
+  background: rgba(211, 209, 205, 0.733);
   color: white;
 }
 
 input::selection {
-  background: rgba(224, 166, 6, 0.733);
+  background: rgba(211, 209, 205, 0.733);
   color: white;
 }
 
@@ -450,7 +503,7 @@ fieldset div {
 }
 
 label {
-  color: #c5c0c3;
+  color: #333;
   cursor: default;
   font-family: "Playfair Display SC", serif;
   font-size: 1.8rem;
@@ -499,7 +552,7 @@ button:hover {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
-  color: #c5c0c3;
+  color: #333;
   cursor: default;
   display: inline-block;
   font-family: "Playfair Display SC", serif;
@@ -524,6 +577,7 @@ input[type="radio"] {
   margin-left: 2rem;
   margin-right: 0.7rem;
   width: auto;
+  color: #333;
 }
 
 /*End of CSS for Form Box*/
@@ -608,8 +662,10 @@ input[type="radio"] {
   .director-writer {
     font-size: 2rem;
   }
-  a.movie_url, a.tv_url {
+  a.movie_url,
+  a.tv_url {
     font-size: 2.2rem;
+    text-align: center;
   }
 
   button.submit {

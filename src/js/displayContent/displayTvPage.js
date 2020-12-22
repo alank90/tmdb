@@ -41,18 +41,20 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
 
   // Create a string of Creators
   // Check array has previous results and clear
+  creators = "";
   oTvInfo.created_by.forEach((creator) => {
     creators += ` ${creator.name}`;
   });
-  $oTv_Data_Overview
-    .find(".createdBy")
-    .html(`<p>Series Creator(s)</p><p>${creators}</p>`);
+  $oTv_Data_Overview.find(".createdBy").html(`<p>Series Creator(s):
+     ${creators}`);
 
+  let sTvNetwork =
+    "https://image.tmdb.org/t/p/w342/" + oTvInfo.networks[0].logo_path;
   $oTv_Data_Overview.find(".network").html(
     `<ul>
-      <li>Series Network/Service<span>${oTvInfo.networks[0].name}</span></li>
-      <li>Number of Episodes<span>${oTvInfo.number_of_episodes}</span></li>
-      <li>Seasons<span>${oTvInfo.number_of_seasons}</span></li>
+      <li>Series Network/Service:<img src="${sTvNetwork}" alt='No Image Available'></li>
+      <li>Number of Episodes:<span>${oTvInfo.number_of_episodes}</span></li>
+      <li>Seasons:<span>${oTvInfo.number_of_seasons}</span></li>
     </ul>`
   );
 
@@ -107,6 +109,29 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
       .text("No Series Homepage Available")
       .attr("href", "");
   }
+
+  // Cast Listing
+  let aCastOfCharacters = oTvInfo.credits.cast;
+  // filter first 8 cast entries
+  aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
+    return index <= 10;
+  });
+
+  console.log(aCastOfCharacters);
+  // Then print out
+  aCastOfCharacters.forEach((el) => {
+    $oTv_Cast_Crew
+      .find(".cast")
+      .append(
+        "<li class='character'> <span class='actor' title='Click To See Their Biography' data-character-index=" +
+          el.id +
+          ">" +
+          el.name +
+          "</span><span>" +
+          el.character +
+          "</span> </li>"
+      );
+  });
 
   /*
   // Cast Listing
