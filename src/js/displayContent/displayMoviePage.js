@@ -43,7 +43,9 @@ let displayPage = async function (
     .html("<p class='tagline'></p><p>" + oMovieInfo.tagline + "</p>");
   $oMovie_Data_Plot
     .find(".plot")
-    .html("<p class='plot'>Movie Overview</p><p>" + oMovieInfo.overview + "</p>");
+    .html(
+      "<p class='plot'>Movie Overview</p><p>" + oMovieInfo.overview + "</p>"
+    );
 
   // Cast Listing
   let aCastOfCharacters = oMovieInfo.credits.cast;
@@ -68,12 +70,12 @@ let displayPage = async function (
     $oMovie_Cast_Crew
       .find(".cast")
       .append(
-        "<li class='character'> <span>" +
-          el.character +
-          "</span><span class='actor' title='Click To See Their Biography' data-character-index=" +
+        "<li class='character'> <span class='actor' title='Click To See Their Biography' data-character-index=" +
           el.id +
           ">" +
           el.name +
+          "</span><span>" +
+          el.character +
           "</span> </li>"
       );
   });
@@ -107,7 +109,9 @@ let displayPage = async function (
   $oMovie_Cast_Crew
     .find(".release_date")
     .html(
-      "<p class='release_date'>Release Date:</p><p>" + oMovieInfo.release_date + "</p>"
+      "<p class='release_date'>Release Date:</p><p>" +
+        oMovieInfo.release_date +
+        "</p>"
     );
   oMovieInfo.revenue = oMovieInfo.revenue
     .toFixed(2)

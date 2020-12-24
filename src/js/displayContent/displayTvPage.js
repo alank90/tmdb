@@ -32,13 +32,15 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
   $oTv_Data_Overview
     .find(".title")
     .html("<p>TV Series:</p><p>" + oTvInfo.name + "</p>");
-  $oTv_Data_Overview
-    .find(".tagline")
-    .html("<p></p><p>" + oTvInfo.tagline + "</p>");
-  $oTv_Data_Overview
-    .find(".overview")
-    .html("<p>TV Overview</p><p>" + oTvInfo.overview + "</p>");
 
+  if (oTvInfo.tagline != "") {
+    $oTv_Data_Overview
+      .find(".tagline")
+      .html("<p></p><p>" + oTvInfo.tagline + "</p>");
+    $oTv_Data_Overview
+      .find(".overview")
+      .html("<p>TV Overview</p><p>" + oTvInfo.overview + "</p>");
+  }
   // Create a string of Creators
   // Check array has previous results and clear
   creators = "";
@@ -134,13 +136,7 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
   });
 
   /*
-  // Cast Listing
-  let aCastOfCharacters = oTvInfo.credits.cast;
-  // filter first 10 cast entries
-  aCastOfCharacters = aCastOfCharacters.filter((el, index) => {
-    return index <= 10;
-  });
-
+  
   // Crew listing
   let aCrew = oTvInfo.credits.crew;
 
@@ -152,21 +148,7 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
     );
   });
 
-  // Then print out
-  aCastOfCharacters.forEach((el) => {
-    $oTv_Cast_Crew
-      .find(".cast")
-      .append(
-        "<li class='character'> <span>" +
-          el.character +
-          "</span><span class='actor' title='Click To See Their Biography' data-character-index=" +
-          el.id +
-          ">" +
-          el.name +
-          "</span> </li>"
-      );
-  });
-
+  
   aCrew.forEach((el) => {
     if ($(".crew:last > span:first").text() === el.job) {
       $oTv_Cast_Crew

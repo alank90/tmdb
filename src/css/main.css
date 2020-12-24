@@ -240,7 +240,7 @@ a {
   font-size: 3rem;
 }
 a.tv_url {
-  position:relative;
+  position: relative;
   text-align: center;
   cursor: pointer;
   color: #000;
@@ -282,9 +282,8 @@ a[href="null"] {
 .createdBy,
 .firstAirDate {
   align-self: center;
-  color: #c5c0c3;
+  color: #000;
   font-size: 2.2rem;
-  max-width: 75%;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
 }
 
@@ -374,7 +373,7 @@ img[src="N/A"] {
   border: 2px solid black;
 }
 li > img {
-  width: 100px;
+  width: 85px;
   height: auto;
   margin-left: 15px;
 }
@@ -525,23 +524,53 @@ select:focus ~ label {
 }
 
 button {
-  -webkit-transform: scale(1);
-  border-radius: 50%;
-  font-family: "Playfair Display SC", serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-left: 48vw;
-  margin-top: 5vh;
-  padding: 2rem;
-  transform: scale(1);
-  transition: -webkit-transform 0.8s ease-out;
-  transition: transform 0.8s ease-out;
-  transition: transform 0.8s ease-out, -webkit-transform 0.8s ease-out;
+  display: block;
+  padding: 0.35em 1.2em;
+  font-size: 1.8rem;
+  border: 0.3em solid #000;
+  background-color: #000;
+  margin: 0 auto;
+  border-radius: 0.32em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  transition: all 0.4s;
 }
 
 button:hover {
-  -webkit-transform: scale(1.2);
-  transform: scale(1.2);
+  color: #000;
+  background-color: #fff;
+}
+/* Button Effect  */
+.bouncy {
+  animation: bouncy 8s infinite linear;
+  position: relative;
+}
+@keyframes bouncy {
+  0% {
+    top: 0em;
+  }
+  40% {
+    top: 0em;
+  }
+  43% {
+    top: -0.9em;
+  }
+  46% {
+    top: 0em;
+  }
+  48% {
+    top: -0.4em;
+  }
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: 0em;
+  }
 }
 
 #year {
@@ -670,11 +699,11 @@ input[type="radio"] {
 
   button.submit {
     display: block;
-    margin: 0 auto;
+    margin: 0.4em auto;
   }
   button#clear {
     display: block;
-    margin: 10px auto;
+    margin: 0.4em auto;
   }
 }
 
