@@ -184,17 +184,14 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  justify-content: center;
   margin: 40px 0;
 }
 
 #movie-cast-crew,
 #tv-cast-crew {
-  clear: both;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 p,
@@ -309,16 +306,19 @@ ul {
   list-style-type: none;
 }
 
-.actor {
+.actor,
+.director-writer {
   position: relative;
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
-.actor:hover {
+.actor:hover,
+.director-writer:hover {
   color: #333;
 }
-.actor:before {
+.actor:before,
+.director-writer:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -330,7 +330,8 @@ ul {
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
 }
-.actor:hover::before {
+.actor:hover::before,
+.director-writer:hover:before {
   visibility: visible;
   transform: scaleX(1);
 }
@@ -373,7 +374,7 @@ img[src="N/A"] {
   border: 2px solid black;
 }
 li > img {
-  width: 85px;
+  width: 55px;
   height: auto;
   margin-left: 15px;
 }
@@ -546,7 +547,8 @@ button:hover {
 }
 /* Button Effect  */
 .bouncy {
-  animation: bouncy 8s infinite linear;
+  animation: bouncy 10s infinite linear;
+  animation-iteration-count: 3;
   position: relative;
 }
 @keyframes bouncy {

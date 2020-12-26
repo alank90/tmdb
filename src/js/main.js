@@ -62,6 +62,7 @@ $(document).ready(function () {
   /* jshint ignore:start */
   $(".submit").on("click", async function (e) {
     e.preventDefault();
+
     let radioValue = $("input[value='movie']:checked").val();
     if (radioValue) {
       oMovieInfo = await getMovieInfo();
@@ -86,8 +87,6 @@ $(document).ready(function () {
       $oTv_Data_Overview.removeClass("hidden"); // Make Results Container Visible
       $oTv_Cast_Crew.removeClass("hidden");
       $oClear.removeClass("hidden"); // Show the clear button
-
-      console.log("TV series lookup coming soon!");
     }
   });
   /* jshint ignore:end */

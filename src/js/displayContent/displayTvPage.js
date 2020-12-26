@@ -119,7 +119,6 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
     return index <= 10;
   });
 
-  console.log(aCastOfCharacters);
   // Then print out
   aCastOfCharacters.forEach((el) => {
     $oTv_Cast_Crew
