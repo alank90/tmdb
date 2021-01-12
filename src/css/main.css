@@ -368,10 +368,12 @@ li:not(.crew) span {
   margin: 0 15px;
 }
 
-#poster {
+#poster img {
   float: right;
+  shape-outside: circle(50%);
   margin: 15vh 3vw;
   max-width: 30vw;
+  height:auto;
 }
 
 img[src="N/A"] {
