@@ -291,15 +291,25 @@ a[href="null"] {
   text-decoration-line: underline;
 }
 
-.character,
-.crew {
-  text-align: center;
-}
-
-.character span,
+/* .character span,
 .crew span {
   display: inline-block;
   margin-right: 15px;
+} */
+
+li.character,
+li.crew {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+li.crew > span {
+  width: 50%;
+}
+li.crew  span:nth-child(n + 3) {
+  margin-left: 50%;
+  color: red;
 }
 
 ul {
