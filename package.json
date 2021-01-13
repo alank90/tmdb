@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/peterbarraud/rapo-browserify-budo#browserify-with-budo",
   "devDependencies": {
-    "autoprefixer": "^8.1.0",
+    "autoprefixer": "^8.6.5",
     "budo": "^10.0.4",
     "copy-dir": "^0.3.0",
     "css-declaration-sorter": "^3.0.1",
@@ -36,11 +36,10 @@
     "imagemin-jpegtran": "^5.0.2",
     "imagemin-pngquant": "^5.1.0",
     "mkdirp": "^0.5.1",
+    "npm": "^6.14.11",
     "rimraf": "^2.6.2",
     "uglifycss": "0.0.27",
     "uglifyify": "^4.0.4"
   },
-  "dependencies": {
-    "npm": "^6.14.10"
-  }
+  "dependencies": {}
 }

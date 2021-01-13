@@ -36,6 +36,7 @@ npm run testbuild
 This runs `budo` on the build
 
 ## Using postcss-cli for css-declaration-sorter and autoprefixer
+`npm install -g postcss`
 
 ### Install postcss-cli globally:
 `npm install -g postcss-cli`

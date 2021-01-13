@@ -65,44 +65,12 @@ img {
 /* ========= Main CSS ===================== */
 html,
 body {
-  min-height: 100%;
-
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#878787+0,848484+8,848484+8,909090+17,989898+25,606060+41,727272+50,606060+61,606060+61,545454+70,545454+70,717171+80,676767+91,616161+100 */
-  background: rgb(135, 135, 135); /* Old browsers */
-  background: -moz-linear-gradient(
-    -45deg,
-    rgba(135, 135, 135, 1) 0%,
-    rgba(132, 132, 132, 1) 8%,
-    rgba(132, 132, 132, 1) 8%,
-    rgba(144, 144, 144, 1) 17%,
-    rgba(152, 152, 152, 1) 25%,
-    rgba(96, 96, 96, 1) 41%,
-    rgba(114, 114, 114, 1) 50%,
-    rgba(96, 96, 96, 1) 61%,
-    rgba(96, 96, 96, 1) 61%,
-    rgba(84, 84, 84, 1) 70%,
-    rgba(84, 84, 84, 1) 70%,
-    rgba(113, 113, 113, 1) 80%,
-    rgba(103, 103, 103, 1) 91%,
-    rgba(97, 97, 97, 1) 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    -45deg,
-    rgba(135, 135, 135, 1) 0%,
-    rgba(132, 132, 132, 1) 8%,
-    rgba(132, 132, 132, 1) 8%,
-    rgba(144, 144, 144, 1) 17%,
-    rgba(152, 152, 152, 1) 25%,
-    rgba(96, 96, 96, 1) 41%,
-    rgba(114, 114, 114, 1) 50%,
-    rgba(96, 96, 96, 1) 61%,
-    rgba(96, 96, 96, 1) 61%,
-    rgba(84, 84, 84, 1) 70%,
-    rgba(84, 84, 84, 1) 70%,
-    rgba(113, 113, 113, 1) 80%,
-    rgba(103, 103, 103, 1) 91%,
-    rgba(97, 97, 97, 1) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
+  background: rgb(
+    135,
+    135,
+    135
+  ); /* Old browsers */ /* FF3.6-15 */ /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
     135deg,
     rgba(135, 135, 135, 1) 0%,
@@ -121,14 +89,15 @@ body {
     rgba(97, 97, 97, 1) 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#878787', endColorstr='#616161',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 .content {
@@ -159,13 +128,6 @@ img[src="./src/img/movie-icon2.png"] {
   width: 15vw;
 }
 
-img.bio-pic {
-  display: inline-block;
-  margin: 15px 0;
-  max-height: 35%;
-  max-width: 35%;
-}
-
 h2 {
   color: #333333;
   font-family: "Playfair Display SC", serif;
@@ -184,7 +146,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 40px 0;
+  margin: 40px auto;
 }
 
 #movie-cast-crew,
@@ -237,34 +199,41 @@ a {
   font-size: 3rem;
 }
 a.tv_url {
+  color: #000;
+  cursor: pointer;
   position: relative;
   text-align: center;
-  cursor: pointer;
-  color: #000;
   text-decoration: none;
 }
 a.tv_url:hover {
   color: #333;
 }
 a.tv_url:before {
-  content: "";
-  position: absolute;
-  width: 50%;
-  height: 2px;
-  bottom: 0;
-  left: 25%;
+  -webkit-transform: scaleX(0);
   background-color: #000;
-  visibility: hidden;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 25%;
+  position: absolute;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
+  visibility: hidden;
+  width: 50%;
 }
 a.tv_url:hover::before {
-  visibility: visible;
+  -webkit-transform: scaleX(1);
   transform: scaleX(1);
+  visibility: visible;
 }
 
 a[href="null"] {
   cursor: not-allowed;
+}
+
+a.person-homepage {
+  margin: 0 auto;
+  width: auto;
 }
 
 .character,
@@ -287,8 +256,9 @@ a[href="null"] {
 li.character,
 li.crew {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 100%;
 }
 
 li.crew > span {
@@ -299,23 +269,23 @@ li.crew span:nth-child(n + 3) {
 }
 
 ul {
-  max-width: 50vw;
-  list-style-type: none;
   color: #000;
   font-family: "Buda", cursive;
   font-size: 2.5rem;
   font-weight: 500;
+  list-style-type: none;
   margin: 2rem auto;
+  max-width: 65vw;
   text-align: center;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
 }
 
 .actor,
 .director-writer {
-  position: relative;
   color: #000;
-  text-decoration: none;
   cursor: pointer;
+  position: relative;
+  text-decoration: none;
 }
 .actor:hover,
 .director-writer:hover {
@@ -323,21 +293,23 @@ ul {
 }
 .actor:before,
 .director-writer:before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 0;
-  left: 0;
+  -webkit-transform: scaleX(0);
   background-color: #000;
-  visibility: hidden;
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out 0s;
+  visibility: hidden;
+  width: 100%;
 }
 .actor:hover::before,
 .director-writer:hover:before {
-  visibility: visible;
+  -webkit-transform: scaleX(1);
   transform: scaleX(1);
+  visibility: visible;
 }
 
 .production {
@@ -363,26 +335,28 @@ li:not(.crew) {
   margin: 0 25px;
 }
 
-li:not(.crew) span {
-  display: inline-block;
-  margin: 0 15px;
+li:not(.crew) span:nth-child(2) {
+  font-size: 2rem;
+}
+
+#poster {
+  float: right;
+  shape-outside: circle(50%);
 }
 
 #poster img {
-  float: right;
-  shape-outside: circle(50%);
+  height: auto;
   margin: 15vh 3vw;
   max-width: 30vw;
-  height:auto;
 }
 
 img[src="N/A"] {
   border: 2px solid black;
 }
 li > img {
-  width: 55px;
   height: auto;
   margin-left: 15px;
+  width: 55px;
 }
 
 .error_message {
@@ -531,31 +505,56 @@ select:focus ~ label {
 }
 
 button {
-  display: block;
-  padding: 0.35em 1.2em;
-  font-size: 1.8rem;
-  border: 0.3em solid #000;
   background-color: #000;
-  margin: 0 auto;
+  border: 0.3em solid #000;
   border-radius: 0.32em;
   box-sizing: border-box;
-  text-decoration: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
   color: #fff;
+  display: block;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin: 0 auto;
+  padding: 0.35em 1.2em;
   text-align: center;
+  text-decoration: none;
   transition: all 0.4s;
 }
 
 button:hover {
-  color: #000;
   background-color: #fff;
+  color: #000;
 }
 /* Button Effect  */
 .bouncy {
+  -webkit-animation: bouncy 10s infinite linear;
+  -webkit-animation-iteration-count: 3;
   animation: bouncy 10s infinite linear;
   animation-iteration-count: 3;
   position: relative;
+}
+@-webkit-keyframes bouncy {
+  0% {
+    top: 0em;
+  }
+  40% {
+    top: 0em;
+  }
+  43% {
+    top: -0.9em;
+  }
+  46% {
+    top: 0em;
+  }
+  48% {
+    top: -0.4em;
+  }
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: 0em;
+  }
 }
 @keyframes bouncy {
   0% {
@@ -608,13 +607,13 @@ input[type="radio"] {
 }
 
 .radioLabel {
+  color: #333;
   display: inline-block;
   font-family: "Playfair Display SC", serif;
   font-size: 1.7rem;
   margin-left: 2rem;
   margin-right: 0.7rem;
   width: auto;
-  color: #333;
 }
 
 /*End of CSS for Form Box*/

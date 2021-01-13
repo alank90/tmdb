@@ -133,62 +133,6 @@ let displayPage = async function (oTvInfo, $oTv_Data_Overview, $oTv_Cast_Crew) {
           "</span> </li>"
       );
   });
-
-  /*
-  
-  // Crew listing
-  let aCrew = oTvInfo.credits.crew;
-
-  aCrew = aCrew.filter((el) => {
-    return (
-      (el.department === "Directing" && el.job === "Director") ||
-      (el.department === "Writing" && el.job === "Screenplay") ||
-      (el.department === "Writing" && el.job === "Writer")
-    );
-  });
-
-  
-  aCrew.forEach((el) => {
-    if ($(".crew:last > span:first").text() === el.job) {
-      $oTv_Cast_Crew
-        .find(".production .crew:last")
-        .append(
-          "<span class='director-writer' title='Click To See Their Biography' data-crew-index=" +
-            el.id +
-            ">" +
-            el.name +
-            "</span>"
-        );
-    } else {
-      $oTv_Cast_Crew
-        .find(".production")
-        .append(
-          "<li class='crew'><span>" +
-            el.job +
-            "</span><span title='Click To See Their Biography' class='director-writer' data-crew-index=" +
-            el.id +
-            ">" +
-            el.name +
-            "</span>"
-        );
-    }
-  });
-
-  $oTv_Cast_Crew
-    .find(".release_date")
-    .html(
-      "<p class='release_date'>Release Date:</p><p>" + oTvInfo.release_date + "</p>"
-    );
-  oTvInfo.revenue = oTvInfo.revenue
-    .toFixed(2)
-    .replace(/(\d)(?=(\d{3})+\.)/g, "$1,"); //Convert to Dollars
-  $oTv_Cast_Crew
-    .find(".revenue")
-    .html("<p class='revenue'>Tv Revenues:</p>" + "$" + oTvInfo.revenue);
-  $oTv_Cast_Crew
-    .find(".runtime")
-    .html("<p class='runtime'>Runtime:</p>" + oTvInfo.runtime + " Minutes");
-  */
 };
 /* jshint ignore:end */
 // =========================================================================== //
