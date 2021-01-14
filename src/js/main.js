@@ -129,9 +129,6 @@ $(document).ready(function () {
     $oClear.addClass("hidden");
     $(".character").remove();
     $(".crew").remove();
-    $(".lastAirDate").remove();
-    $(".tv_url").remove();
-    $(".cast").remove();
 
     resetForm($("form[name=searchForm]")); // by name
   });

@@ -177,9 +177,9 @@ p {
 .title {
   color: #333333;
   font-family: "Buda", cursive;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 3vh;
+  margin-bottom: -25px;
   text-align: center;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.9);
 }
@@ -189,9 +189,13 @@ p {
   font-family: "Buda", cursive;
   font-size: 2.5rem;
   font-weight: 600;
-  margin-bottom: 2vh;
+  margin-bottom: 25px -55px;
   text-align: center;
   text-shadow: 2px 3px 1spx rgba(243, 238, 238, 0.6);
+}
+
+.plot {
+  margin: 5px auto -20px;
 }
 
 a {
@@ -258,11 +262,10 @@ li.crew {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 100%;
 }
 
 li.crew > span {
-  width: 50%;
+  margin-left: 20px;
 }
 li.crew span:nth-child(n + 3) {
   margin-left: 50%;
@@ -336,7 +339,8 @@ li:not(.crew) {
 }
 
 li:not(.crew) span:nth-child(2) {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  margin-left: 15px;
 }
 
 #poster {
@@ -645,7 +649,7 @@ input[type="radio"] {
     margin: 25px auto;
   }
   img[alt="No Poster Available"] {
-    max-height: 40vh;
+    height: auto;
   }
   #movie-data-plot {
     clear: right;
