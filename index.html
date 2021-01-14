@@ -32,9 +32,15 @@
       href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
     <link rel="stylesheet" href="./src/css/main.css" />
+    <style>
+      body {
+        opacity: 0;
+        transition: opacity 2s;
+      }
+    </style>
   </head>
 
-  <body>
+  <body onload="document.body.style.opacity='1'">
     <!--[if lt IE 8]>
       <p class="browserupgrade">
         You are using an <strong>outdated</strong> browser. Please
