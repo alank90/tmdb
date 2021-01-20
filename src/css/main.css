@@ -349,15 +349,10 @@ li:not(.crew) span:nth-child(2) {
   shape-outside: circle(50%);
 }
 
-#poster img {
-  height: auto;
-  margin: 15vh 3vw;
-  max-width: 30vw;
-}
-
 img[src="N/A"] {
   border: 2px solid black;
 }
+
 li > img {
   height: auto;
   margin-left: 15px;
